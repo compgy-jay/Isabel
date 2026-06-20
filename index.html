@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isabella &mdash; Poet. Dreamer. Storyteller.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #050508;
+      color: #d4c9b8;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-thumb { background: #2a2018; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d4a742; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      padding: 1.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(5, 5, 8, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212, 167, 66, 0.08);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #d4a742;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8a7e6e;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #d4a742; }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(212, 167, 66, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(212, 167, 66, 0.03) 0%, transparent 50%);
+      z-index: 0;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-ornament {
+      color: #d4a742; font-size: 2rem; margin-bottom: 1rem;
+      opacity: 0.6; letter-spacing: 8px;
+    }
+    .hero h1 {
+      font-size: 5rem; font-weight: 600; letter-spacing: 1px;
+      color: #f0e6d4;
+      margin-bottom: 0.5rem;
+    }
+    .hero h2 {
+      font-size: 1.3rem; font-weight: 300; font-style: italic;
+      color: #8a7e6e; margin-bottom: 0.5rem;
+    }
+    .hero .divider {
+      width: 60px; height: 1px;
+      background: #d4a742; margin: 1.5rem auto;
+      opacity: 0.5;
+    }
+    .hero p {
+      font-size: 1.1rem; color: #6d6355;
+      max-width: 480px; font-style: italic;
+    }
+    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      font-family: 'Inter', sans-serif;
+      padding: 0.75rem 2rem; border-radius: 0;
+      font-weight: 500; font-size: 0.75rem; letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: #d4a742; color: #050508;
+    }
+    .btn-primary:hover {
+      background: #e0b84c; transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent; color: #d4c9b8;
+      border: 1px solid rgba(212, 167, 66, 0.3);
+    }
+    .btn-outline:hover {
+      border-color: #d4a742; color: #d4a742; transform: translateY(-1px);
+    }
+    .btn-danger {
+      background: transparent; color: #b34a4a;
+      border: 1px solid rgba(179, 74, 74, 0.3);
+    }
+    .btn-danger:hover {
+      background: #b34a4a; color: #050508;
+    }
+    .btn-sm {
+      padding: 0.4rem 1rem; font-size: 0.65rem;
+    }
+
+    /* ─── Sections ─── */
+    section { padding: 5rem 2rem; }
+    .section-container { max-width: 900px; margin: 0 auto; }
+
+    .section-title {
+      font-size: 2.5rem; font-weight: 500; text-align: center;
+      color: #f0e6d4; margin-bottom: 0.3rem;
+    }
+    .section-subtitle {
+      text-align: center; font-style: italic; color: #6d6355;
+      font-size: 1.1rem; margin-bottom: 3.5rem;
+    }
+    .section-ornament {
+      text-align: center; color: #d4a742; font-size: 1.2rem;
+      margin-bottom: 1rem; opacity: 0.4; letter-spacing: 6px;
+    }
+
+    /* ─── About ─── */
+    .about-content {
+      max-width: 650px; margin: 0 auto;
+      text-align: center; font-size: 1.2rem;
+    }
+    .about-content p { margin-bottom: 1.2rem; color: #b8ad9c; }
+    .about-content .gold { color: #d4a742; }
+
+    /* ─── Writings / Poem Library ─── */
+    .writings-controls {
+      display: flex; gap: 1rem; justify-content: center;
+      margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .writings-controls .btn { font-size: 0.7rem; }
+
+    .poem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .poem-card {
+      background: #0c0b0f;
+      border: 1px solid rgba(212, 167, 66, 0.08);
+      padding: 1.8rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .poem-card:hover { border-color: rgba(212, 167, 66, 0.25); }
+    .poem-card .poem-title {
+      font-size: 1.4rem; font-weight: 600; color: #f0e6d4;
+      margin-bottom: 0.2rem;
+    }
+    .poem-card .poem-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .poem-card .poem-excerpt {
+      color: #8a7e6e; font-style: italic;
+      font-size: 1rem;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .poem-card .poem-body {
+      color: #8a7e6e; font-size: 1rem;
+      line-height: 1.8; margin-top: 1rem;
+      white-space: pre-wrap;
+    }
+    .poem-card .poem-actions {
+      display: flex; gap: 0.8rem; margin-top: 1.2rem;
+    }
+    .poem-card .poem-actions button {
+      background: none; border: none; color: #5a5042;
+      cursor: pointer; font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.3s;
+    }
+    .poem-card .poem-actions .read-btn:hover { color: #d4a742; }
+    .poem-card .poem-actions .delete-btn:hover { color: #b34a4a; }
+
+    .empty-state {
+      text-align: center; padding: 4rem 2rem;
+      color: #5a5042; grid-column: 1 / -1;
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.4; }
+    .empty-state h3 { font-size: 1.5rem; color: #8a7e6e; margin-bottom: 0.5rem; }
+    .empty-state p { font-style: italic; }
+
+    /* ─── Modals ─── */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(6px);
+      display: none; justify-content: center; align-items: center;
+      z-index: 200; padding: 2rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #0c0b0f; border: 1px solid rgba(212, 167, 66, 0.15);
+      width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
+      padding: 2.5rem;
+    }
+    .modal h2 {
+      font-size: 1.8rem; font-weight: 500; color: #f0e6d4;
+      margin-bottom: 0.3rem;
+    }
+    .modal .modal-sub {
+      color: #6d6355; font-style: italic; margin-bottom: 2rem;
+    }
+    .modal .close-modal {
+      float: right; background: none; border: none;
+      color: #5a5042; font-size: 1.5rem; cursor: pointer;
+      transition: color 0.3s;
+    }
+    .modal .close-modal:hover { color: #d4a742; }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      font-family: 'Inter', sans-serif;
+      display: block; font-size: 0.7rem; letter-spacing: 2px;
+      text-transform: uppercase; color: #8a7e6e; margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; background: #050508;
+      border: 1px solid rgba(212, 167, 66, 0.12);
+      padding: 0.9rem 1rem;
+      color: #d4c9b8; font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: rgba(212, 167, 66, 0.4);
+    }
+    .form-group textarea { min-height: 200px; resize: vertical; }
+    .form-group .char-count {
+      font-family: 'Inter', sans-serif;
+      text-align: right; font-size: 0.7rem; color: #5a5042;
+      margin-top: 0.3rem;
+    }
+    .form-group .error-msg {
+      font-family: 'Inter', sans-serif;
+      color: #b34a4a; font-size: 0.75rem; margin-top: 0.3rem;
+      display: none;
+    }
+
+    .read-modal .modal { max-width: 640px; }
+    .read-poem-title {
+      font-size: 2rem; font-weight: 600; color: #f0e6d4;
+      margin-bottom: 0.2rem;
+    }
+    .read-poem-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .read-poem-body {
+      font-size: 1.15rem; line-height: 2; color: #b8ad9c;
+      white-space: pre-wrap;
+    }
+    .read-poem-body::first-letter {
+      font-size: 3.5rem; float: left; line-height: 1;
+      color: #d4a742; margin-right: 0.5rem;
+      font-weight: 600;
+    }
+
+    /* ─── Login Screen ─── */
+    .login-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #050508;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 9999; padding: 2rem;
+      transition: opacity 0.6s ease;
+    }
+    .login-overlay.hidden {
+      opacity: 0; pointer-events: none;
+    }
+    .login-box {
+      width: 100%; max-width: 400px;
+      border: 1px solid rgba(212, 167, 66, 0.1);
+      padding: 3rem 2.5rem;
+      background: #0c0b0f;
+    }
+    .login-box .login-ornament {
+      text-align: center; color: #d4a742; font-size: 1.5rem;
+      margin-bottom: 0.5rem; opacity: 0.5; letter-spacing: 6px;
+    }
+    .login-box h1 {
+      text-align: center; font-size: 1.8rem; font-weight: 500;
+      color: #f0e6d4; margin-bottom: 0.2rem;
+    }
+    .login-box .login-sub {
+      text-align: center; font-style: italic; color: #6d6355;
+      font-size: 0.95rem; margin-bottom: 2rem;
+    }
+    .login-box .form-group { margin-bottom: 1.2rem; }
+    .login-box .form-group input {
+      text-align: center; font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+    .login-box .login-error {
+      font-family: 'Inter', sans-serif;
+      color: #b34a4a; font-size: 0.75rem; text-align: center;
+      margin-bottom: 1rem; display: none;
+    }
+    .login-box .login-footer {
+      text-align: center; margin-top: 1.2rem;
+    }
+    .login-box .login-footer a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
+      text-transform: uppercase; cursor: pointer;
+      transition: color 0.3s;
+    }
+    .login-box .login-footer a:hover { color: #d4a742; }
+
+    /* ─── Forgot Password ─── */
+    .forgot-section { display: none; }
+    .forgot-section.active { display: block; }
+    .login-form.hidden { display: none; }
+    .forgot-section .sent-msg {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; color: #6d6355; text-align: center;
+      margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .forgot-section .sent-msg strong {
+      color: #d4a742; font-size: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 4px;
+    }
+    .forgot-section .back-link {
+      text-align: center; margin-top: 1.2rem;
+    }
+    .forgot-section .back-link a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
+      text-transform: uppercase; cursor: pointer;
+      transition: color 0.3s;
+    }
+    .forgot-section .back-link a:hover { color: #d4a742; }
+
+    /* ─── Contact ─── */
+    .contact-text {
+      text-align: center; max-width: 500px; margin: 0 auto 2rem;
+      font-size: 1.1rem; color: #8a7e6e; font-style: italic;
+    }
+    .contact-details {
+      display: flex; justify-content: center; gap: 2rem;
+      flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      color: #b8ad9c; font-size: 1.1rem;
+    }
+    .contact-item i {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(212, 167, 66, 0.12);
+      color: #d4a742; font-size: 1rem;
+    }
+    .contact-social {
+      display: flex; justify-content: center; gap: 1.5rem;
+    }
+    .contact-social a {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(212, 167, 66, 0.12);
+      color: #8a7e6e; font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+    .contact-social a:hover {
+      border-color: #d4a742; color: #d4a742; transform: translateY(-2px);
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid rgba(212, 167, 66, 0.06);
+      color: #3d362e; font-size: 0.9rem;
+    }
+    footer .gold { color: #d4a742; }
+
+    /* ─── Toast ─── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: #0c0b0f; border: 1px solid rgba(212, 167, 66, 0.2);
+      padding: 1rem 1.5rem; color: #d4c9b8;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s; z-index: 300; pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.65rem; letter-spacing: 1px; }
+      .hero h1 { font-size: 3rem; }
+      .hero h2 { font-size: 1rem; }
+      section { padding: 3rem 1.5rem; }
+      .section-title { font-size: 2rem; }
+      .poem-grid { grid-template-columns: 1fr; }
+      .modal { padding: 1.5rem; }
+      .read-poem-title { font-size: 1.5rem; }
+      .read-poem-body::first-letter { font-size: 2.5rem; }
+      .login-box { padding: 2rem 1.5rem; }
+      .contact-details { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.2rem; }
+      .writings-controls { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Login Screen ─── -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <div class="login-ornament">&loz; &loz; &loz;</div>
+      <h1>Isabella</h1>
+      <p class="login-sub">enter the garden of verses</p>
+
+      <!-- Login Form -->
+      <div class="login-form" id="loginForm">
+        <div class="login-error" id="loginError">Incorrect password. Try again.</div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="&bull; &bull; &bull; &bull; &bull; &bull;"
+                 onkeydown="if(event.key==='Enter') attemptLogin()" autocomplete="current-password" />
+        </div>
+        <button class="btn btn-primary" onclick="attemptLogin()" style="width:100%;justify-content:center;">
+          <i class="fas fa-key"></i> Enter
+        </button>
+        <div class="login-footer">
+          <a onclick="showForgotPassword()">Forgot password?</a>
+        </div>
+      </div>
+
+      <!-- Forgot Password -->
+      <div class="forgot-section" id="forgotSection">
+        <p class="sent-msg" id="forgotMsg">
+          A verification code will be sent to your phone via WhatsApp.
+        </p>
+        <button class="btn btn-outline" id="sendCodeBtn" onclick="sendWhatsAppCode()" style="width:100%;justify-content:center;">
+          <i class="fab fa-whatsapp"></i> Send Code via WhatsApp
+        </button>
+        <div class="form-group" id="codeEntry" style="display:none;margin-top:1.5rem;">
+          <label for="verificationCode">Verification Code</label>
+          <input type="text" id="verificationCode" placeholder="_ _ _ _ _ _"
+                 maxlength="6" inputmode="numeric"
+                 onkeydown="if(event.key==='Enter') verifyCode()"
+                 style="text-align:center;font-size:1.5rem;letter-spacing:8px;" />
+          <div class="error-msg" id="codeError">Incorrect code. Try again.</div>
+        </div>
+        <button class="btn btn-primary" id="verifyBtn" onclick="verifyCode()" style="width:100%;justify-content:center;display:none;">
+          <i class="fas fa-check"></i> Verify &amp; Unlock
+        </button>
+        <div class="back-link">
+          <a onclick="showLoginForm()">&larr; Back to login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Main Site ─── -->
+  <div id="siteContent" style="display:none;">
+
+    <nav>
+      <div class="logo">Isabella</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#writings">Writings</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-ornament">&loz; &loz; &loz;</div>
+      <h1>Isabella</h1>
+      <h2>&mdash; weaving silence into verse &mdash;</h2>
+      <div class="divider"></div>
+      <p>For words are the only truce we keep with the unfathomable.</p>
+      <div class="hero-cta">
+        <a href="#writings" class="btn btn-primary"><i class="fas fa-feather-alt"></i> Read My Poems</a>
+        <a href="#about" class="btn btn-outline"><i class="fas fa-asterisk"></i> About Me</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-container">
+        <div class="section-ornament">&loz; &loz; &loz;</div>
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">in which the poet introduces herself</p>
+        <div class="about-content">
+          <p>
+            I'm <span class="gold">Isabella</span> &mdash; a keeper of quiet mornings, a collector of half-light,
+            and a poet who believes that every silence holds a syllable waiting to be born.
+          </p>
+          <p>
+            I write because the world is too vast for prose. My verses wander through
+            <span class="gold">loss</span>, <span class="gold">longing</span>,
+            <span class="gold">love</span>, and the strange geography of the human heart.
+            Each poem is a small room I build with words &mdash; and you are invited in.
+          </p>
+          <p>
+            When I'm not stitching metaphors, you'll find me reading old letters,
+            watching rain streak the window, or searching for the perfect last line.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Writings -->
+    <section id="writings">
+      <div class="section-container">
+        <div class="section-ornament">&loz; &loz; &loz;</div>
+        <h2 class="section-title">Writings</h2>
+        <p class="section-subtitle">fragments of a life transcribed</p>
+
+        <div class="writings-controls">
+          <button class="btn btn-primary" onclick="openAddModal()">
+            <i class="fas fa-pen-fancy"></i> New Poem
+          </button>
+        </div>
+
+        <div class="poem-grid" id="poemGrid"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-container">
+        <div class="section-ornament">&loz; &loz; &loz;</div>
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">let the words find their way back to me</p>
+        <p class="contact-text">
+          If a line of mine has ever touched you, I'd love to hear it.<br />
+          Reach out &mdash; the page is never truly full.
+        </p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <span>+254 710 652 805</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>isabella@poet.dev</span>
+          </div>
+        </div>
+        <div class="contact-social">
+          <a href="https://wa.me/254710652805" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
+    </footer>
+
+  </div>
+
+  <!-- ─── Poem Modal ─── -->
+  <div class="modal-overlay" id="poemModal">
+    <div class="modal">
+      <button class="close-modal" onclick="closeModal('poemModal')">&times;</button>
+      <h2 id="modalTitle">Write a Poem</h2>
+      <p class="modal-sub" id="modalSub">let the ink find its way</p>
+      <form id="poemForm" onsubmit="savePoem(event)">
+        <input type="hidden" id="poemId" value="" />
+        <div class="form-group">
+          <label for="poemTitle">Title</label>
+          <input type="text" id="poemTitle" placeholder="e.g. The Shape of Silence" required />
+        </div>
+        <div class="form-group">
+          <label for="poemBody">Poem</label>
+          <textarea id="poemBody" placeholder="Write your poem here..." required></textarea>
+          <div class="char-count"><span id="charCount">0</span> characters</div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-feather-alt"></i> <span id="submitLabel">Publish Poem</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Read Poem Modal ─── -->
+  <div class="modal-overlay read-modal" id="readModal">
+    <div class="modal">
+      <button class="close-modal" onclick="closeModal('readModal')">&times;</button>
+      <div class="read-poem-title" id="readPoemTitle"></div>
+      <div class="read-poem-date" id="readPoemDate"></div>
+      <div class="read-poem-body" id="readPoemBody"></div>
+    </div>
+  </div>
+
+  <!-- ─── Toast ─── -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ─── Auth ───
+    const DEFAULT_PASSWORD = 'newday';
+    const CUSTOM_PASSWORD_KEY = 'isabella_custom_password';
+    const AUTH_KEY = 'isabella_authenticated';
+    const PHONE = '+254710652805';
+    const POEMS_KEY = 'isabella_poems';
+
+    function getStoredPassword() {
+      return localStorage.getItem(CUSTOM_PASSWORD_KEY) || DEFAULT_PASSWORD;
+    }
+
+    function isAuthenticated() {
+      return sessionStorage.getItem(AUTH_KEY) === 'true';
+    }
+
+    function setAuthenticated(val) {
+      if (val) sessionStorage.setItem(AUTH_KEY, 'true');
+      else sessionStorage.removeItem(AUTH_KEY);
+    }
+
+    // ─── Login ───
+    function attemptLogin() {
+      const input = document.getElementById('loginPassword');
+      const err = document.getElementById('loginError');
+      if (input.value === getStoredPassword()) {
+        err.style.display = 'none';
+        unlockSite();
+      } else {
+        err.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function unlockSite() {
+      setAuthenticated(true);
+      document.getElementById('loginOverlay').classList.add('hidden');
+      document.getElementById('siteContent').style.display = 'block';
+      renderPoems();
+    }
+
+    // ─── Forgot Password / WhatsApp Recovery ───
+    let generatedCode = null;
+
+    function showForgotPassword() {
+      document.getElementById('loginForm').classList.add('hidden');
+      document.getElementById('forgotSection').classList.add('active');
+    }
+
+    function showLoginForm() {
+      document.getElementById('forgotSection').classList.remove('active');
+      document.getElementById('loginForm').classList.remove('hidden');
+      document.getElementById('codeEntry').style.display = 'none';
+      document.getElementById('verifyBtn').style.display = 'none';
+      document.getElementById('sendCodeBtn').style.display = 'flex';
+      document.getElementById('codeError').style.display = 'none';
+      document.getElementById('verificationCode').value = '';
+      document.getElementById('loginError').style.display = 'none';
+      document.getElementById('loginPassword').value = '';
+      document.getElementById('loginPassword').focus();
+    }
+
+    function sendWhatsAppCode() {
+      generatedCode = String(Math.floor(100000 + Math.random() * 900000));
+      const msg = encodeURIComponent(
+        `Isabella's Poetry Site — Verification Code: ${generatedCode}\n\n` +
+        `Enter this code to reset your password. If you did not request this, ignore this message.`
+      );
+      window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
+      document.getElementById('sendCodeBtn').style.display = 'none';
+      document.getElementById('codeEntry').style.display = 'block';
+      document.getElementById('verifyBtn').style.display = 'flex';
+      document.getElementById('forgotMsg').innerHTML =
+        `Code sent via WhatsApp to <strong>+254 710 652 805</strong>.<br />Enter the 6-digit code below.`;
+      document.getElementById('verificationCode').focus();
+    }
+
+    function verifyCode() {
+      const codeInput = document.getElementById('verificationCode').value.trim();
+      const err = document.getElementById('codeError');
+      if (codeInput === generatedCode) {
+        err.style.display = 'none';
+        // allow setting a new password
+        const newPw = prompt('Code verified! Enter a new password (leave blank to keep "newday"):');
+        if (newPw && newPw.trim()) {
+          localStorage.setItem(CUSTOM_PASSWORD_KEY, newPw.trim());
+        }
+        generatedCode = null;
+        unlockSite();
+      } else {
+        err.style.display = 'block';
+        document.getElementById('verificationCode').value = '';
+        document.getElementById('verificationCode').focus();
+      }
+    }
+
+    // ─── Auto-login check ───
+    if (isAuthenticated()) {
+      unlockSite();
+    } else {
+      document.getElementById('loginOverlay').style.display = 'flex';
+      document.getElementById('loginPassword').focus();
+    }
+
+    // ─── Poems Data ───
+    function getPoems() {
+      try { return JSON.parse(localStorage.getItem(POEMS_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function savePoems(poems) {
+      localStorage.setItem(POEMS_KEY, JSON.stringify(poems));
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    // ─── Render Poems ───
+    function renderPoems() {
+      const grid = document.getElementById('poemGrid');
+      const poems = getPoems();
+      if (poems.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-feather-alt"></i>
+            <h3>No poems yet</h3>
+            <p>The page is blank &mdash; but it won't be for long.</p>
+          </div>`;
+        return;
+      }
+      grid.innerHTML = poems.map((p, i) => {
+        const excerpt = p.body.length > 120 ? p.body.slice(0, 120) + '...' : p.body;
+        const date = formatDate(p.createdAt);
+        return `
+          <div class="poem-card">
+            <div class="poem-title">${escapeHtml(p.title)}</div>
+            <div class="poem-date">${date}</div>
+            <div class="poem-excerpt">${escapeHtml(excerpt)}</div>
+            <div class="poem-actions">
+              <button class="read-btn" onclick="openReadModal(${i})"><i class="fas fa-book-open"></i> Read</button>
+              <button class="read-btn" onclick="openEditModal(${i})"><i class="fas fa-edit"></i> Edit</button>
+              <button class="delete-btn" onclick="deletePoem(${i})"><i class="fas fa-trash-alt"></i> Delete</button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // ─── CRUD ───
+    function openAddModal() {
+      document.getElementById('modalTitle').textContent = 'Write a Poem';
+      document.getElementById('modalSub').textContent = 'let the ink find its way';
+      document.getElementById('submitLabel').textContent = 'Publish Poem';
+      document.getElementById('poemId').value = '';
+      document.getElementById('poemTitle').value = '';
+      document.getElementById('poemBody').value = '';
+      document.getElementById('charCount').textContent = '0';
+      openModal('poemModal');
+      document.getElementById('poemTitle').focus();
+    }
+
+    function openEditModal(index) {
+      const poems = getPoems();
+      const p = poems[index];
+      if (!p) return;
+      document.getElementById('modalTitle').textContent = 'Revise Your Poem';
+      document.getElementById('modalSub').textContent = 'a word here, a breath there';
+      document.getElementById('submitLabel').textContent = 'Update Poem';
+      document.getElementById('poemId').value = index;
+      document.getElementById('poemTitle').value = p.title;
+      document.getElementById('poemBody').value = p.body;
+      document.getElementById('charCount').textContent = p.body.length;
+      openModal('poemModal');
+    }
+
+    function savePoem(e) {
+      e.preventDefault();
+      const idField = document.getElementById('poemId');
+      const title = document.getElementById('poemTitle').value.trim();
+      const body = document.getElementById('poemBody').value.trim();
+      if (!title || !body) return;
+
+      let poems = getPoems();
+      const index = idField.value;
+
+      if (index !== '') {
+        poems[parseInt(index)] = { ...poems[parseInt(index)], title, body };
+        showToast('Poem revised &mdash; the words breathe anew.');
+      } else {
+        poems.unshift({ title, body, createdAt: new Date().toISOString() });
+        showToast('Poem published &mdash; ink meets eternity.');
+      }
+
+      savePoems(poems);
+      renderPoems();
+      closeModal('poemModal');
+    }
+
+    function deletePoem(index) {
+      if (!confirm('Remove this poem from the world?')) return;
+      const poems = getPoems();
+      poems.splice(index, 1);
+      savePoems(poems);
+      renderPoems();
+      showToast('Poem dissolved back into silence.');
+    }
+
+    function openReadModal(index) {
+      const poems = getPoems();
+      const p = poems[index];
+      if (!p) return;
+      document.getElementById('readPoemTitle').textContent = p.title;
+      document.getElementById('readPoemDate').textContent = formatDate(p.createdAt);
+      document.getElementById('readPoemBody').textContent = p.body;
+      openModal('readModal');
+    }
+
+    // ─── Modal helpers ───
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => {
+          m.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ─── Char count ───
+    document.getElementById('poemBody').addEventListener('input', function() {
+      document.getElementById('charCount').textContent = this.value.length;
+    });
+
+    // ─── Toast ───
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerHTML = msg;
+      t.classList.add('show');
+      clearTimeout(t._timeout);
+      t._timeout = setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ─── Smooth scroll ───
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
