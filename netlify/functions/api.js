@@ -77,7 +77,8 @@ export default async (req) => {
     }
 
     return json({ error: 'Not found' }, 404);
-  } catch {
-    return json({ error: 'Internal error' }, 500);
+  } catch (err) {
+    console.error('API Error:', err);
+    return json({ error: err.message || 'Internal error' }, 500);
   }
 };
