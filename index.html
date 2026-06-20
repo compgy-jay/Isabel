@@ -521,6 +521,7 @@
     async function fetchPoems() {
       try {
         const res = await fetch(`${API_BASE}/poems`);
+        if (!res.ok) throw new Error('fetch failed');
         poems = await res.json();
       } catch {
         poems = [];
@@ -607,35 +608,40 @@
 
       try {
         if (idField.value !== '') {
-          await fetch(`${API_BASE}/poems/${idField.value}`, {
+          const res = await fetch(`${API_BASE}/poems/${idField.value}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, body })
           });
+          if (!res.ok) throw new Error('update failed');
           showToast('Poem revised &mdash; the words breathe anew.');
         } else {
-          await fetch(`${API_BASE}/poems`, {
+          const res = await fetch(`${API_BASE}/poems`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, body })
           });
+          if (!res.ok) throw new Error('create failed');
           showToast('Poem published &mdash; ink meets eternity.');
         }
         await fetchPoems();
         closeModal('poemModal');
-      } catch {
-        showToast('Failed to save poem. Is the server running?');
+      } catch (err) {
+        showToast('Failed to save poem. Check console for details.');
+        console.error('savePoem error:', err);
       }
     }
 
     async function deletePoem(id) {
       if (!confirm('Remove this poem from the world?')) return;
       try {
-        await fetch(`${API_BASE}/poems/${id}`, { method: 'DELETE' });
+        const res = await fetch(`${API_BASE}/poems/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('delete failed');
         await fetchPoems();
         showToast('Poem dissolved back into silence.');
-      } catch {
+      } catch (err) {
         showToast('Failed to delete poem.');
+        console.error('deletePoem error:', err);
       }
     }
 
