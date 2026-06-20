@@ -296,81 +296,6 @@
       font-weight: 600;
     }
 
-    /* ─── Login Screen ─── */
-    .login-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: #050508;
-      display: flex; justify-content: center; align-items: center;
-      z-index: 9999; padding: 2rem;
-      transition: opacity 0.6s ease;
-    }
-    .login-overlay.hidden {
-      opacity: 0; pointer-events: none;
-    }
-    .login-box {
-      width: 100%; max-width: 400px;
-      border: 1px solid rgba(212, 167, 66, 0.1);
-      padding: 3rem 2.5rem;
-      background: #0c0b0f;
-    }
-    .login-box .login-ornament {
-      text-align: center; color: #d4a742; font-size: 1.5rem;
-      margin-bottom: 0.5rem; opacity: 0.5; letter-spacing: 6px;
-    }
-    .login-box h1 {
-      text-align: center; font-size: 1.8rem; font-weight: 500;
-      color: #f0e6d4; margin-bottom: 0.2rem;
-    }
-    .login-box .login-sub {
-      text-align: center; font-style: italic; color: #6d6355;
-      font-size: 0.95rem; margin-bottom: 2rem;
-    }
-    .login-box .form-group { margin-bottom: 1.2rem; }
-    .login-box .form-group input {
-      text-align: center; font-size: 1.2rem;
-      letter-spacing: 2px;
-    }
-    .login-box .login-error {
-      font-family: 'Inter', sans-serif;
-      color: #b34a4a; font-size: 0.75rem; text-align: center;
-      margin-bottom: 1rem; display: none;
-    }
-    .login-box .login-footer {
-      text-align: center; margin-top: 1.2rem;
-    }
-    .login-box .login-footer a {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
-      text-transform: uppercase; cursor: pointer;
-      transition: color 0.3s;
-    }
-    .login-box .login-footer a:hover { color: #d4a742; }
-
-    /* ─── Forgot Password ─── */
-    .forgot-section { display: none; }
-    .forgot-section.active { display: block; }
-    .login-form.hidden { display: none; }
-    .forgot-section .sent-msg {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem; color: #6d6355; text-align: center;
-      margin-bottom: 1.5rem; line-height: 1.6;
-    }
-    .forgot-section .sent-msg strong {
-      color: #d4a742; font-size: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: 4px;
-    }
-    .forgot-section .back-link {
-      text-align: center; margin-top: 1.2rem;
-    }
-    .forgot-section .back-link a {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
-      text-transform: uppercase; cursor: pointer;
-      transition: color 0.3s;
-    }
-    .forgot-section .back-link a:hover { color: #d4a742; }
-
     /* ─── Contact ─── */
     .contact-text {
       text-align: center; max-width: 500px; margin: 0 auto 2rem;
@@ -437,7 +362,6 @@
       .modal { padding: 1.5rem; }
       .read-poem-title { font-size: 1.5rem; }
       .read-poem-body::first-letter { font-size: 2.5rem; }
-      .login-box { padding: 2rem 1.5rem; }
       .contact-details { flex-direction: column; align-items: center; }
     }
     @media (max-width: 480px) {
@@ -450,57 +374,8 @@
 
   <canvas id="bgCanvas"></canvas>
 
-  <!-- ─── Login Screen ─── -->
-  <div class="login-overlay" id="loginOverlay">
-    <div class="login-box">
-      <div class="login-ornament">&loz; &loz; &loz;</div>
-      <h1>Isabella</h1>
-      <p class="login-sub">enter the garden of verses</p>
-
-      <!-- Login Form -->
-      <div class="login-form" id="loginForm">
-        <div class="login-error" id="loginError">Incorrect password. Try again.</div>
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" placeholder="&bull; &bull; &bull; &bull; &bull; &bull;"
-                 onkeydown="if(event.key==='Enter') attemptLogin()" autocomplete="current-password" />
-        </div>
-        <button class="btn btn-primary" onclick="attemptLogin()" style="width:100%;justify-content:center;">
-          <i class="fas fa-key"></i> Enter
-        </button>
-        <div class="login-footer">
-          <a onclick="showForgotPassword()">Forgot password?</a>
-        </div>
-      </div>
-
-      <!-- Forgot Password -->
-      <div class="forgot-section" id="forgotSection">
-        <p class="sent-msg" id="forgotMsg">
-          A verification code will be sent to your phone via WhatsApp.
-        </p>
-        <button class="btn btn-outline" id="sendCodeBtn" onclick="sendWhatsAppCode()" style="width:100%;justify-content:center;">
-          <i class="fab fa-whatsapp"></i> Send Code via WhatsApp
-        </button>
-        <div class="form-group" id="codeEntry" style="display:none;margin-top:1.5rem;">
-          <label for="verificationCode">Verification Code</label>
-          <input type="text" id="verificationCode" placeholder="_ _ _ _ _ _"
-                 maxlength="6" inputmode="numeric"
-                 onkeydown="if(event.key==='Enter') verifyCode()"
-                 style="text-align:center;font-size:1.5rem;letter-spacing:8px;" />
-          <div class="error-msg" id="codeError">Incorrect code. Try again.</div>
-        </div>
-        <button class="btn btn-primary" id="verifyBtn" onclick="verifyCode()" style="width:100%;justify-content:center;display:none;">
-          <i class="fas fa-check"></i> Verify &amp; Unlock
-        </button>
-        <div class="back-link">
-          <a onclick="showLoginForm()">&larr; Back to login</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ─── Main Site ─── -->
-  <div id="siteContent" style="display:none;">
+  <div id="siteContent">
 
     <nav>
       <div class="logo">Isabella</div>
@@ -639,111 +514,8 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    // ─── Config ───
-    const API_BASE = '/api'; // ← Netlify Functions proxy — works in dev & production
-    const AUTH_KEY = 'isabella_authenticated';
-    const PHONE = '+254710652805';
+    const API_BASE = '/api';
 
-    // ─── Auth ───
-    function isAuthenticated() {
-      return sessionStorage.getItem(AUTH_KEY) === 'true';
-    }
-
-    function setAuthenticated(val) {
-      if (val) sessionStorage.setItem(AUTH_KEY, 'true');
-      else sessionStorage.removeItem(AUTH_KEY);
-    }
-
-    // ─── Login ───
-    async function attemptLogin() {
-      const input = document.getElementById('loginPassword');
-      const err = document.getElementById('loginError');
-      try {
-        const res = await fetch(`${API_BASE}/auth`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password: input.value })
-        });
-        if (res.ok) {
-          err.style.display = 'none';
-          unlockSite();
-        } else {
-          throw new Error('wrong password');
-        }
-      } catch {
-        err.style.display = 'block';
-        input.value = '';
-        input.focus();
-      }
-    }
-
-    function unlockSite() {
-      setAuthenticated(true);
-      document.getElementById('loginOverlay').classList.add('hidden');
-      document.getElementById('siteContent').style.display = 'block';
-      fetchPoems();
-    }
-
-    // ─── Forgot Password / WhatsApp Recovery ───
-    let generatedCode = null;
-
-    function showForgotPassword() {
-      document.getElementById('loginForm').classList.add('hidden');
-      document.getElementById('forgotSection').classList.add('active');
-    }
-
-    function showLoginForm() {
-      document.getElementById('forgotSection').classList.remove('active');
-      document.getElementById('loginForm').classList.remove('hidden');
-      document.getElementById('codeEntry').style.display = 'none';
-      document.getElementById('verifyBtn').style.display = 'none';
-      document.getElementById('sendCodeBtn').style.display = 'flex';
-      document.getElementById('codeError').style.display = 'none';
-      document.getElementById('verificationCode').value = '';
-      document.getElementById('loginError').style.display = 'none';
-      document.getElementById('loginPassword').value = '';
-      document.getElementById('loginPassword').focus();
-    }
-
-    function sendWhatsAppCode() {
-      generatedCode = String(Math.floor(100000 + Math.random() * 900000));
-      const msg = encodeURIComponent(
-        `Isabella's Poetry Site — Verification Code: ${generatedCode}\n\n` +
-        `Enter this code to reset your password. If you did not request this, ignore this message.`
-      );
-      window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
-      document.getElementById('sendCodeBtn').style.display = 'none';
-      document.getElementById('codeEntry').style.display = 'block';
-      document.getElementById('verifyBtn').style.display = 'flex';
-      document.getElementById('forgotMsg').innerHTML =
-        `Code sent via WhatsApp to <strong>+254 710 652 805</strong>.<br />Enter the 6-digit code below.`;
-      document.getElementById('verificationCode').focus();
-    }
-
-    function verifyCode() {
-      const codeInput = document.getElementById('verificationCode').value.trim();
-      const err = document.getElementById('codeError');
-      if (codeInput === generatedCode) {
-        err.style.display = 'none';
-        const newPw = prompt('Code verified! Enter a new password (leave blank to keep "newday"):');
-        generatedCode = null;
-        unlockSite();
-      } else {
-        err.style.display = 'block';
-        document.getElementById('verificationCode').value = '';
-        document.getElementById('verificationCode').focus();
-      }
-    }
-
-    // ─── Auto-login check ───
-    if (isAuthenticated()) {
-      unlockSite();
-    } else {
-      document.getElementById('loginOverlay').style.display = 'flex';
-      document.getElementById('loginPassword').focus();
-    }
-
-    // ─── Poems Data (API) ───
     let poems = [];
 
     async function fetchPoems() {
@@ -927,6 +699,9 @@
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // ─── Init ───
+    fetchPoems();
 
     // ─── Canvas Background Animation ───
     const canvas = document.getElementById('bgCanvas');

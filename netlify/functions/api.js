@@ -1,7 +1,5 @@
 import { getStore } from '@netlify/blobs';
 
-const DEFAULT_PASSWORD = 'newday';
-
 const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
@@ -32,12 +30,6 @@ export default async (req) => {
 
   try {
     const body = ['POST', 'PUT'].includes(method) ? await req.json() : {};
-
-    // POST /auth
-    if (path === '/auth' && method === 'POST') {
-      if (body.password === DEFAULT_PASSWORD) return json({ ok: true });
-      return json({ error: 'Incorrect password' }, 401);
-    }
 
     // GET /poems
     if (path === '/poems' && method === 'GET') {
