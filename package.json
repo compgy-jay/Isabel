@@ -5,5 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npx netlify dev"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
   }
 }

@@ -613,7 +613,10 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, body })
           });
-          if (!res.ok) throw new Error('update failed');
+          if (!res.ok) {
+            const detail = await res.text();
+            throw new Error(`update failed: ${res.status} — ${detail}`);
+          }
           showToast('Poem revised &mdash; the words breathe anew.');
         } else {
           const res = await fetch(`${API_BASE}/poems`, {
@@ -621,7 +624,10 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, body })
           });
-          if (!res.ok) throw new Error('create failed');
+          if (!res.ok) {
+            const detail = await res.text();
+            throw new Error(`create failed: ${res.status} — ${detail}`);
+          }
           showToast('Poem published &mdash; ink meets eternity.');
         }
         await fetchPoems();
