@@ -21,7 +21,7 @@ async function getPoems() {
 
 export default async (req) => {
   const url = new URL(req.url);
-  const path = url.pathname.replace(/^\/api/, '').replace(/^\/\.netlify\/functions\/api/, '') || '/';
+  let path = url.pathname.replace(/^\/api/, '').replace(/^\/\.netlify\/functions\/api/, '') || '/';
   const method = req.method;
 
   if (method === 'OPTIONS') {

@@ -642,7 +642,10 @@
       if (!confirm('Remove this poem from the world?')) return;
       try {
         const res = await fetch(`${API_BASE}/poems/${id}`, { method: 'DELETE' });
-        if (!res.ok) throw new Error('delete failed');
+        if (!res.ok) {
+          const detail = await res.text();
+          throw new Error(`delete failed: ${res.status} — ${detail}`);
+        }
         await fetchPoems();
         showToast('Poem dissolved back into silence.');
       } catch (err) {
