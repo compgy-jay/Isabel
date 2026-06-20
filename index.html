@@ -4,9 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Isabella &mdash; Poet. Dreamer. Storyteller.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
+    :root {
+      --bg: #050508;
+      --surface: #0c0b0f;
+      --surface-hover: #141218;
+      --gold: #d4a742;
+      --gold-dim: rgba(212, 167, 66, 0.15);
+      --text: #d4c9b8;
+      --text-dim: #8a7e6e;
+      --text-muted: #5a5042;
+      --danger: #b34a4a;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
@@ -17,46 +34,74 @@
     }
 
     body {
-      font-family: 'Cormorant Garamond', serif;
-      background: #050508;
-      color: #d4c9b8;
-      line-height: 1.7;
+      font-family: 'Lora', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      min-height: 100vh;
     }
 
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #2a2018; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #d4a742; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
     a { text-decoration: none; color: inherit; }
 
     /* ─── Navigation ─── */
     nav {
       position: fixed; top: 0; width: 100%;
-      padding: 1.2rem 2rem;
+      padding: 0.8rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(5, 5, 8, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(212, 167, 66, 0.08);
+      background: rgba(5, 5, 8, 0.85);
+      backdrop-filter: blur(20px) saturate(1.2);
+      border-bottom: 1px solid var(--gold-dim);
       z-index: 100;
+      height: 64px;
     }
     .logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem; font-weight: 500; letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #d4a742;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
     }
-    .nav-links {
-      display: flex; gap: 2rem; list-style: none;
-    }
+    .logo span { font-family: 'Cormorant Garamond', serif; font-weight: 300; color: var(--text-dim); }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.25rem; }
     .nav-links a {
       font-family: 'Inter', sans-serif;
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 2px;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: #8a7e6e;
-      transition: color 0.3s;
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      transition: var(--transition);
+      cursor: pointer;
     }
-    .nav-links a:hover { color: #d4a742; }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-links a.active { color: var(--gold); background: var(--gold-dim); }
+
+    /* ─── Tab Content ─── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ─── Sections ─── */
+    section { padding: 5rem 2rem; }
+    .section-container { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 500; text-align: center;
+      color: #f0e6d4; margin-bottom: 0.3rem;
+    }
+    .section-subtitle {
+      text-align: center; font-style: italic; color: var(--text-dim);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; margin-bottom: 3rem;
+    }
+    .section-ornament {
+      text-align: center; color: var(--gold); font-size: 1.2rem;
+      margin-bottom: 1rem; opacity: 0.4; letter-spacing: 8px;
+    }
 
     /* ─── Hero ─── */
     .hero {
@@ -64,7 +109,7 @@
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
       text-align: center;
-      padding: 6rem 2rem 4rem;
+      padding: 7rem 2rem 4rem;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -72,301 +117,409 @@
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       background:
-        radial-gradient(ellipse at 50% 30%, rgba(212, 167, 66, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(212, 167, 66, 0.03) 0%, transparent 50%);
+        radial-gradient(ellipse at 50% 25%, rgba(212, 167, 66, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(212, 167, 66, 0.04) 0%, transparent 50%);
       z-index: 0;
     }
     .hero > * { position: relative; z-index: 1; }
     .hero-ornament {
-      color: #d4a742; font-size: 2rem; margin-bottom: 1rem;
-      opacity: 0.6; letter-spacing: 8px;
+      color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem;
+      opacity: 0.5; letter-spacing: 10px;
     }
     .hero h1 {
-      font-size: 5rem; font-weight: 600; letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5rem; font-weight: 600; letter-spacing: 1px;
       color: #f0e6d4;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 2px 40px rgba(212, 167, 66, 0.1);
     }
-    .hero h2 {
-      font-size: 1.3rem; font-weight: 300; font-style: italic;
-      color: #8a7e6e; margin-bottom: 0.5rem;
+    .hero .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 300; font-style: italic;
+      color: var(--text-dim); margin-bottom: 0.5rem;
     }
     .hero .divider {
-      width: 60px; height: 1px;
-      background: #d4a742; margin: 1.5rem auto;
+      width: 60px; height: 1.5px;
+      background: var(--gold); margin: 1.8rem auto;
       opacity: 0.5;
+      border-radius: 2px;
     }
-    .hero p {
+    .hero .description {
+      font-family: 'Lora', serif;
       font-size: 1.1rem; color: #6d6355;
-      max-width: 480px; font-style: italic;
+      max-width: 500px; font-style: italic;
     }
     .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
+    /* ─── Buttons ─── */
     .btn {
       font-family: 'Inter', sans-serif;
-      padding: 0.75rem 2rem; border-radius: 0;
+      padding: 0.75rem 2rem; border-radius: 8px;
       font-weight: 500; font-size: 0.75rem; letter-spacing: 2px;
       text-transform: uppercase;
-      transition: all 0.3s;
+      transition: var(--transition);
       display: inline-flex; align-items: center; gap: 0.6rem;
       cursor: pointer; border: none;
     }
     .btn-primary {
-      background: #d4a742; color: #050508;
+      background: var(--gold); color: var(--bg);
     }
     .btn-primary:hover {
-      background: #e0b84c; transform: translateY(-1px);
+      background: #e0b84c; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 167, 66, 0.25);
     }
     .btn-outline {
-      background: transparent; color: #d4c9b8;
+      background: transparent; color: var(--text);
       border: 1px solid rgba(212, 167, 66, 0.3);
     }
     .btn-outline:hover {
-      border-color: #d4a742; color: #d4a742; transform: translateY(-1px);
+      border-color: var(--gold); color: var(--gold); transform: translateY(-2px);
     }
     .btn-danger {
-      background: transparent; color: #b34a4a;
+      background: transparent; color: var(--danger);
       border: 1px solid rgba(179, 74, 74, 0.3);
     }
     .btn-danger:hover {
-      background: #b34a4a; color: #050508;
+      background: var(--danger); color: #fff;
+      transform: translateY(-2px);
     }
     .btn-sm {
       padding: 0.4rem 1rem; font-size: 0.65rem;
     }
 
-    /* ─── Sections ─── */
-    section { padding: 5rem 2rem; }
-    .section-container { max-width: 900px; margin: 0 auto; }
-
-    .section-title {
-      font-size: 2.5rem; font-weight: 500; text-align: center;
-      color: #f0e6d4; margin-bottom: 0.3rem;
-    }
-    .section-subtitle {
-      text-align: center; font-style: italic; color: #6d6355;
-      font-size: 1.1rem; margin-bottom: 3.5rem;
-    }
-    .section-ornament {
-      text-align: center; color: #d4a742; font-size: 1.2rem;
-      margin-bottom: 1rem; opacity: 0.4; letter-spacing: 6px;
-    }
-
     /* ─── About ─── */
     .about-content {
-      max-width: 650px; margin: 0 auto;
-      text-align: center; font-size: 1.2rem;
+      max-width: 700px; margin: 0 auto;
+      text-align: center; font-size: 1.15rem;
     }
     .about-content p { margin-bottom: 1.2rem; color: #b8ad9c; }
-    .about-content .gold { color: #d4a742; }
-
-    /* ─── Writings / Poem Library ─── */
-    .writings-controls {
-      display: flex; gap: 1rem; justify-content: center;
-      margin-bottom: 3rem; flex-wrap: wrap;
+    .about-content .gold { color: var(--gold); }
+    .about-signature {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.4rem;
+      color: var(--gold); margin-top: 2rem;
+      opacity: 0.7;
     }
-    .writings-controls .btn { font-size: 0.7rem; }
 
+    /* ─── Poems Grid (Public) ─── */
     .poem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
     }
     .poem-card {
-      background: #0c0b0f;
+      background: var(--surface);
       border: 1px solid rgba(212, 167, 66, 0.08);
+      border-radius: var(--radius);
       padding: 1.8rem;
+      transition: var(--transition);
+      backdrop-filter: blur(12px);
       position: relative;
-      transition: border-color 0.3s;
+      overflow: hidden;
     }
-    .poem-card:hover { border-color: rgba(212, 167, 66, 0.25); }
+    .poem-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .poem-card:hover {
+      border-color: rgba(212, 167, 66, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .poem-card:hover::before { opacity: 1; }
     .poem-card .poem-title {
+      font-family: 'Playfair Display', serif;
       font-size: 1.4rem; font-weight: 600; color: #f0e6d4;
       margin-bottom: 0.2rem;
     }
     .poem-card .poem-date {
       font-family: 'Inter', sans-serif;
-      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
+      font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1.5px;
       text-transform: uppercase; margin-bottom: 0.8rem;
     }
     .poem-card .poem-excerpt {
-      color: #8a7e6e; font-style: italic;
-      font-size: 1rem;
+      font-family: 'Lora', serif;
+      color: var(--text-dim); font-style: italic;
+      font-size: 0.95rem;
       display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .poem-card .poem-body {
-      color: #8a7e6e; font-size: 1rem;
-      line-height: 1.8; margin-top: 1rem;
-      white-space: pre-wrap;
     }
     .poem-card .poem-actions {
       display: flex; gap: 0.8rem; margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(212, 167, 66, 0.06);
     }
     .poem-card .poem-actions button {
-      background: none; border: none; color: #5a5042;
-      cursor: pointer; font-size: 0.85rem;
+      background: none; border: none; color: var(--text-muted);
+      cursor: pointer; font-size: 0.8rem;
       font-family: 'Inter', sans-serif;
-      transition: color 0.3s;
+      transition: var(--transition);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
     }
-    .poem-card .poem-actions .read-btn:hover { color: #d4a742; }
-    .poem-card .poem-actions .delete-btn:hover { color: #b34a4a; }
+    .poem-card .poem-actions .read-btn:hover { color: var(--gold); background: var(--gold-dim); }
+    .poem-card .poem-actions .edit-btn:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .poem-card .poem-actions .delete-btn:hover { color: var(--danger); background: rgba(179,74,74,0.1); }
 
     .empty-state {
-      text-align: center; padding: 4rem 2rem;
-      color: #5a5042; grid-column: 1 / -1;
+      text-align: center; padding: 5rem 2rem;
+      color: var(--text-muted); grid-column: 1 / -1;
     }
-    .empty-state i { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.4; }
-    .empty-state h3 { font-size: 1.5rem; color: #8a7e6e; margin-bottom: 0.5rem; }
-    .empty-state p { font-style: italic; }
+    .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--gold); }
+    .empty-state h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .empty-state p { font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
 
-    /* ─── Modals ─── */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8); backdrop-filter: blur(6px);
-      display: none; justify-content: center; align-items: center;
-      z-index: 200; padding: 2rem;
+    /* ─── Write Tab (Admin) ─── */
+    .write-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
     }
-    .modal-overlay.active { display: flex; }
-    .modal {
-      background: #0c0b0f; border: 1px solid rgba(212, 167, 66, 0.15);
-      width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
-      padding: 2.5rem;
+    @media (max-width: 900px) {
+      .write-layout { grid-template-columns: 1fr; }
     }
-    .modal h2 {
-      font-size: 1.8rem; font-weight: 500; color: #f0e6d4;
-      margin-bottom: 0.3rem;
-    }
-    .modal .modal-sub {
-      color: #6d6355; font-style: italic; margin-bottom: 2rem;
-    }
-    .modal .close-modal {
-      float: right; background: none; border: none;
-      color: #5a5042; font-size: 1.5rem; cursor: pointer;
-      transition: color 0.3s;
-    }
-    .modal .close-modal:hover { color: #d4a742; }
 
-    .form-group { margin-bottom: 1.5rem; }
+    .write-form-card {
+      background: var(--surface);
+      border: 1px solid var(--gold-dim);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    .write-form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: #f0e6d4; margin-bottom: 0.2rem;
+    }
+    .write-form-card .form-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--text-dim); margin-bottom: 1.5rem;
+    }
+
+    .manage-list {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      max-height: 60vh; overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+    .manage-list::-webkit-scrollbar { width: 4px; }
+    .manage-list::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    .manage-item {
+      background: var(--surface);
+      border: 1px solid rgba(212, 167, 66, 0.06);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: var(--transition);
+    }
+    .manage-item:hover { border-color: var(--gold-dim); background: var(--surface-hover); }
+    .manage-item .mi-info { flex: 1; min-width: 0; }
+    .manage-item .mi-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: #f0e6d4;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .manage-item .mi-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem; color: var(--text-muted); letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .manage-item .mi-actions { display: flex; gap: 0.4rem; flex-shrink: 0; margin-left: 1rem; }
+
+    /* ─── Form ─── */
+    .form-group { margin-bottom: 1.2rem; }
     .form-group label {
       font-family: 'Inter', sans-serif;
-      display: block; font-size: 0.7rem; letter-spacing: 2px;
-      text-transform: uppercase; color: #8a7e6e; margin-bottom: 0.4rem;
+      display: block; font-size: 0.65rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem;
     }
     .form-group input,
     .form-group textarea {
-      width: 100%; background: #050508;
+      width: 100%; background: var(--bg);
       border: 1px solid rgba(212, 167, 66, 0.12);
+      border-radius: 8px;
       padding: 0.9rem 1rem;
-      color: #d4c9b8; font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; outline: none;
-      transition: border-color 0.3s;
+      color: var(--text); font-family: 'Lora', serif;
+      font-size: 1.05rem; outline: none;
+      transition: var(--transition);
     }
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: rgba(212, 167, 66, 0.4);
+      box-shadow: 0 0 0 3px rgba(212, 167, 66, 0.06);
     }
     .form-group textarea { min-height: 200px; resize: vertical; }
     .form-group .char-count {
       font-family: 'Inter', sans-serif;
-      text-align: right; font-size: 0.7rem; color: #5a5042;
+      text-align: right; font-size: 0.65rem; color: var(--text-muted);
       margin-top: 0.3rem;
     }
-    .form-group .error-msg {
-      font-family: 'Inter', sans-serif;
-      color: #b34a4a; font-size: 0.75rem; margin-top: 0.3rem;
-      display: none;
-    }
 
-    .read-modal .modal { max-width: 640px; }
+    /* ─── Modals ─── */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+      display: none; justify-content: center; align-items: center;
+      z-index: 200; padding: 2rem;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal {
+      background: var(--surface);
+      border: 1px solid rgba(212, 167, 66, 0.15);
+      border-radius: var(--radius);
+      width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto;
+      padding: 2.5rem;
+      transform: scale(0.95) translateY(10px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+    .modal .close-modal {
+      float: right; background: none; border: none;
+      color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
+      transition: var(--transition); line-height: 1;
+    }
+    .modal .close-modal:hover { color: var(--gold); }
+
+    .read-modal .modal { max-width: 660px; }
     .read-poem-title {
-      font-size: 2rem; font-weight: 600; color: #f0e6d4;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 600; color: #f0e6d4;
       margin-bottom: 0.2rem;
     }
     .read-poem-date {
       font-family: 'Inter', sans-serif;
-      font-size: 0.7rem; color: #5a5042; letter-spacing: 1px;
+      font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1.5px;
       text-transform: uppercase; margin-bottom: 1.5rem;
     }
     .read-poem-body {
+      font-family: 'Lora', serif;
       font-size: 1.15rem; line-height: 2; color: #b8ad9c;
       white-space: pre-wrap;
     }
     .read-poem-body::first-letter {
-      font-size: 3.5rem; float: left; line-height: 1;
-      color: #d4a742; margin-right: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; float: left; line-height: 0.9;
+      color: var(--gold); margin-right: 0.5rem;
       font-weight: 600;
     }
 
     /* ─── Contact ─── */
     .contact-text {
-      text-align: center; max-width: 500px; margin: 0 auto 2rem;
-      font-size: 1.1rem; color: #8a7e6e; font-style: italic;
+      text-align: center; max-width: 520px; margin: 0 auto 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--text-dim); font-style: italic;
     }
     .contact-details {
       display: flex; justify-content: center; gap: 2rem;
-      flex-wrap: wrap; margin-bottom: 2rem;
+      flex-wrap: wrap; margin-bottom: 2.5rem;
     }
     .contact-item {
-      display: flex; align-items: center; gap: 0.8rem;
-      color: #b8ad9c; font-size: 1.1rem;
+      display: flex; align-items: center; gap: 1rem;
+      color: #b8ad9c; font-family: 'Lora', serif; font-size: 1.1rem;
     }
     .contact-item i {
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(212, 167, 66, 0.12);
-      color: #d4a742; font-size: 1rem;
+      border: 1px solid var(--gold-dim);
+      border-radius: 50%;
+      color: var(--gold); font-size: 1rem;
+      transition: var(--transition);
+    }
+    .contact-item:hover i {
+      background: var(--gold-dim);
+      transform: scale(1.05);
     }
     .contact-social {
       display: flex; justify-content: center; gap: 1.5rem;
     }
     .contact-social a {
-      width: 48px; height: 48px;
+      width: 50px; height: 50px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(212, 167, 66, 0.12);
-      color: #8a7e6e; font-size: 1.2rem;
-      transition: all 0.3s;
+      border: 1px solid var(--gold-dim);
+      border-radius: 50%;
+      color: var(--text-dim); font-size: 1.2rem;
+      transition: var(--transition);
     }
     .contact-social a:hover {
-      border-color: #d4a742; color: #d4a742; transform: translateY(-2px);
+      border-color: var(--gold); color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(212, 167, 66, 0.15);
     }
 
     /* ─── Footer ─── */
     footer {
-      text-align: center; padding: 2rem;
+      text-align: center; padding: 2.5rem;
       border-top: 1px solid rgba(212, 167, 66, 0.06);
-      color: #3d362e; font-size: 0.9rem;
+      color: #3d362e;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.5px;
     }
-    footer .gold { color: #d4a742; }
+    footer .gold { color: var(--gold); }
 
     /* ─── Toast ─── */
     .toast {
       position: fixed; bottom: 2rem; right: 2rem;
-      background: #0c0b0f; border: 1px solid rgba(212, 167, 66, 0.2);
-      padding: 1rem 1.5rem; color: #d4c9b8;
-      font-family: 'Inter', sans-serif; font-size: 0.8rem;
-      letter-spacing: 0.5px;
-      opacity: 0; transform: translateY(10px);
-      transition: all 0.3s; z-index: 300; pointer-events: none;
+      background: var(--surface);
+      border: 1px solid var(--gold-dim);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.3px;
+      opacity: 0; transform: translateY(12px);
+      transition: all 0.35s ease; z-index: 300; pointer-events: none;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     .toast.show { opacity: 1; transform: translateY(0); }
 
+    /* ─── Animations ─── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    .poem-card {
+      opacity: 0; transform: translateY(20px);
+    }
+    .poem-card.visible {
+      animation: cardIn 0.5s ease forwards;
+    }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.65rem; letter-spacing: 1px; }
+      nav { padding: 0.6rem 1rem; height: 56px; }
+      .nav-links { gap: 0; }
+      .nav-links a { font-size: 0.6rem; padding: 0.4rem 0.8rem; letter-spacing: 1px; }
       .hero h1 { font-size: 3rem; }
-      .hero h2 { font-size: 1rem; }
-      section { padding: 3rem 1.5rem; }
+      .hero .tagline { font-size: 1rem; }
+      section { padding: 3rem 1.2rem; }
       .section-title { font-size: 2rem; }
       .poem-grid { grid-template-columns: 1fr; }
       .modal { padding: 1.5rem; }
       .read-poem-title { font-size: 1.5rem; }
-      .read-poem-body::first-letter { font-size: 2.5rem; }
+      .read-poem-body::first-letter { font-size: 2.8rem; }
       .contact-details { flex-direction: column; align-items: center; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2.2rem; }
-      .writings-controls { flex-direction: column; align-items: center; }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .section-title { font-size: 1.7rem; }
     }
   </style>
 </head>
@@ -374,32 +527,31 @@
 
   <canvas id="bgCanvas"></canvas>
 
-  <!-- ─── Main Site ─── -->
-  <div id="siteContent">
+  <!-- ─── Navigation ─── -->
+  <nav>
+    <div class="logo">Isabella <span>&mdash; poetry</span></div>
+    <ul class="nav-links">
+      <li><a class="active" data-tab="home" onclick="switchTab('home')">Home</a></li>
+      <li><a data-tab="poems" onclick="switchTab('poems')">Poems</a></li>
+      <li><a data-tab="write" onclick="switchTab('write')">Write</a></li>
+      <li><a data-tab="contact" onclick="switchTab('contact')">Contact</a></li>
+    </ul>
+  </nav>
 
-    <nav>
-      <div class="logo">Isabella</div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#writings">Writings</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <!-- Hero -->
+  <!-- ─── Tab: Home ─── -->
+  <div class="tab-content active" id="tab-home">
     <section class="hero">
       <div class="hero-ornament">&loz; &loz; &loz;</div>
       <h1>Isabella</h1>
-      <h2>&mdash; weaving silence into verse &mdash;</h2>
+      <p class="tagline">&mdash; weaving silence into verse &mdash;</p>
       <div class="divider"></div>
-      <p>For words are the only truce we keep with the unfathomable.</p>
+      <p class="description">For words are the only truce we keep with the unfathomable.</p>
       <div class="hero-cta">
-        <a href="#writings" class="btn btn-primary"><i class="fas fa-feather-alt"></i> Read My Poems</a>
-        <a href="#about" class="btn btn-outline"><i class="fas fa-asterisk"></i> About Me</a>
+        <a class="btn btn-primary" onclick="switchTab('poems')"><i class="fas fa-feather-alt"></i> Read Poems</a>
+        <a class="btn btn-outline" onclick="switchTab('write')"><i class="fas fa-pen-fancy"></i> Write</a>
       </div>
     </section>
 
-    <!-- About -->
     <section id="about">
       <div class="section-container">
         <div class="section-ornament">&loz; &loz; &loz;</div>
@@ -420,29 +572,88 @@
             When I'm not stitching metaphors, you'll find me reading old letters,
             watching rain streak the window, or searching for the perfect last line.
           </p>
+          <div class="about-signature">&mdash; Isabella</div>
         </div>
       </div>
     </section>
 
-    <!-- Writings -->
-    <section id="writings">
+    <footer>
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
+    </footer>
+  </div>
+
+  <!-- ─── Tab: Poems (Public) ─── -->
+  <div class="tab-content" id="tab-poems">
+    <section>
       <div class="section-container">
         <div class="section-ornament">&loz; &loz; &loz;</div>
-        <h2 class="section-title">Writings</h2>
+        <h2 class="section-title">Published Poems</h2>
         <p class="section-subtitle">fragments of a life transcribed</p>
-
-        <div class="writings-controls">
-          <button class="btn btn-primary" onclick="openAddModal()">
-            <i class="fas fa-pen-fancy"></i> New Poem
-          </button>
-        </div>
-
         <div class="poem-grid" id="poemGrid"></div>
       </div>
     </section>
+    <footer>
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
+    </footer>
+  </div>
 
-    <!-- Contact -->
-    <section id="contact">
+  <!-- ─── Tab: Write (Admin) ─── -->
+  <div class="tab-content" id="tab-write">
+    <section>
+      <div class="section-container">
+        <div class="section-ornament">&loz; &loz; &loz;</div>
+        <h2 class="section-title">Manage Poems</h2>
+        <p class="section-subtitle">write, revise, and curate your collection</p>
+
+        <div class="write-layout">
+          <div class="write-form-card">
+            <h3 id="formTitle">Write a New Poem</h3>
+            <p class="form-sub" id="formSub">let the ink find its way</p>
+            <form id="poemForm" onsubmit="savePoem(event)">
+              <input type="hidden" id="poemId" value="" />
+              <div class="form-group">
+                <label for="poemTitle">Title</label>
+                <input type="text" id="poemTitle" placeholder="e.g. The Shape of Silence" required />
+              </div>
+              <div class="form-group">
+                <label for="poemBody">Poem</label>
+                <textarea id="poemBody" placeholder="Write your poem here..." required></textarea>
+                <div class="char-count"><span id="charCount">0</span> characters</div>
+              </div>
+              <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-feather-alt"></i> <span id="submitLabel">Publish Poem</span>
+                </button>
+                <button type="button" class="btn btn-outline" id="cancelEditBtn" onclick="cancelEdit()" style="display:none;">
+                  <i class="fas fa-times"></i> Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#f0e6d4;margin-bottom:1rem;">
+              Your Poems
+            </h3>
+            <div class="manage-list" id="manageList">
+              <div class="empty-state" id="manageEmpty">
+                <i class="fas fa-feather-alt"></i>
+                <h3>No poems yet</h3>
+                <p>Write your first poem to see it here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
+    </footer>
+  </div>
+
+  <!-- ─── Tab: Contact ─── -->
+  <div class="tab-content" id="tab-contact">
+    <section>
       <div class="section-container">
         <div class="section-ornament">&loz; &loz; &loz;</div>
         <h2 class="section-title">Contact</h2>
@@ -468,36 +679,9 @@
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
     <footer>
       &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
     </footer>
-
-  </div>
-
-  <!-- ─── Poem Modal ─── -->
-  <div class="modal-overlay" id="poemModal">
-    <div class="modal">
-      <button class="close-modal" onclick="closeModal('poemModal')">&times;</button>
-      <h2 id="modalTitle">Write a Poem</h2>
-      <p class="modal-sub" id="modalSub">let the ink find its way</p>
-      <form id="poemForm" onsubmit="savePoem(event)">
-        <input type="hidden" id="poemId" value="" />
-        <div class="form-group">
-          <label for="poemTitle">Title</label>
-          <input type="text" id="poemTitle" placeholder="e.g. The Shape of Silence" required />
-        </div>
-        <div class="form-group">
-          <label for="poemBody">Poem</label>
-          <textarea id="poemBody" placeholder="Write your poem here..." required></textarea>
-          <div class="char-count"><span id="charCount">0</span> characters</div>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-feather-alt"></i> <span id="submitLabel">Publish Poem</span>
-        </button>
-      </form>
-    </div>
   </div>
 
   <!-- ─── Read Poem Modal ─── -->
@@ -515,27 +699,61 @@
 
   <script>
     const API_BASE = '/api';
-
     let poems = [];
+    let currentEditId = null;
 
+    // ─── Tab Switching ───
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+      document.querySelector(`.nav-links a[data-tab="${tabId}"]`).classList.add('active');
+      if (tabId === 'poems' || tabId === 'write') renderPoems();
+    }
+
+    // ─── API ───
+    async function apiFetch(path, options = {}) {
+      const res = await fetch(`${API_BASE}${path}`, {
+        headers: { 'Content-Type': 'application/json' },
+        ...options
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`${res.status} — ${text || res.statusText}`);
+      }
+      return res.json();
+    }
+
+    // ─── Poems ───
     async function fetchPoems() {
       try {
-        const res = await fetch(`${API_BASE}/poems`);
-        if (!res.ok) throw new Error('fetch failed');
-        poems = await res.json();
-      } catch {
+        poems = await apiFetch('/poems');
+      } catch (err) {
+        console.error('fetchPoems error:', err);
         poems = [];
       }
       renderPoems();
     }
 
     function formatDate(dateStr) {
+      if (!dateStr) return '';
       const d = new Date(dateStr);
       return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
-    // ─── Render Poems ───
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // ─── Render ───
     function renderPoems() {
+      renderPublicGrid();
+      renderManageList();
+    }
+
+    function renderPublicGrid() {
       const grid = document.getElementById('poemGrid');
       if (poems.length === 0) {
         grid.innerHTML = `
@@ -546,27 +764,42 @@
           </div>`;
         return;
       }
-      grid.innerHTML = poems.map(p => {
-        const excerpt = p.body.length > 120 ? p.body.slice(0, 120) + '...' : p.body;
-        const date = formatDate(p.created_at || p.createdAt);
+      grid.innerHTML = poems.map((p, i) => {
+        const excerpt = p.body.length > 140 ? p.body.slice(0, 140) + '...' : p.body;
         return `
-          <div class="poem-card">
+          <div class="poem-card visible" style="animation-delay:${i * 0.05}s">
             <div class="poem-title">${escapeHtml(p.title)}</div>
-            <div class="poem-date">${date}</div>
+            <div class="poem-date">${formatDate(p.created_at || p.createdAt)}</div>
             <div class="poem-excerpt">${escapeHtml(excerpt)}</div>
             <div class="poem-actions">
               <button class="read-btn" onclick="openReadModal(${p.id})"><i class="fas fa-book-open"></i> Read</button>
-              <button class="read-btn" onclick="openEditModal(${p.id})"><i class="fas fa-edit"></i> Edit</button>
-              <button class="delete-btn" onclick="deletePoem(${p.id})"><i class="fas fa-trash-alt"></i> Delete</button>
             </div>
           </div>`;
       }).join('');
     }
 
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+    function renderManageList() {
+      const list = document.getElementById('manageList');
+      const empty = document.getElementById('manageEmpty');
+      if (poems.length === 0) {
+        list.innerHTML = '';
+        list.appendChild(empty);
+        empty.style.display = '';
+        return;
+      }
+      empty.style.display = 'none';
+      list.innerHTML = poems.map(p => `
+        <div class="manage-item">
+          <div class="mi-info">
+            <div class="mi-title">${escapeHtml(p.title)}</div>
+            <div class="mi-date">${formatDate(p.created_at || p.createdAt)}</div>
+          </div>
+          <div class="mi-actions">
+            <button class="btn btn-outline btn-sm" onclick="openEditModal(${p.id})"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger btn-sm" onclick="deletePoem(${p.id})"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+      `).join('');
     }
 
     function getPoemById(id) {
@@ -575,65 +808,71 @@
 
     // ─── CRUD ───
     function openAddModal() {
-      document.getElementById('modalTitle').textContent = 'Write a Poem';
-      document.getElementById('modalSub').textContent = 'let the ink find its way';
+      currentEditId = null;
+      document.getElementById('formTitle').textContent = 'Write a New Poem';
+      document.getElementById('formSub').textContent = 'let the ink find its way';
       document.getElementById('submitLabel').textContent = 'Publish Poem';
       document.getElementById('poemId').value = '';
       document.getElementById('poemTitle').value = '';
       document.getElementById('poemBody').value = '';
       document.getElementById('charCount').textContent = '0';
-      openModal('poemModal');
+      document.getElementById('cancelEditBtn').style.display = 'none';
       document.getElementById('poemTitle').focus();
+      switchTab('write');
     }
 
     function openEditModal(id) {
       const p = getPoemById(id);
       if (!p) return;
-      document.getElementById('modalTitle').textContent = 'Revise Your Poem';
-      document.getElementById('modalSub').textContent = 'a word here, a breath there';
+      currentEditId = id;
+      document.getElementById('formTitle').textContent = 'Revise Your Poem';
+      document.getElementById('formSub').textContent = 'a word here, a breath there';
       document.getElementById('submitLabel').textContent = 'Update Poem';
       document.getElementById('poemId').value = id;
       document.getElementById('poemTitle').value = p.title;
       document.getElementById('poemBody').value = p.body;
       document.getElementById('charCount').textContent = p.body.length;
-      openModal('poemModal');
+      document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+      switchTab('write');
+    }
+
+    function cancelEdit() {
+      currentEditId = null;
+      document.getElementById('poemId').value = '';
+      document.getElementById('poemTitle').value = '';
+      document.getElementById('poemBody').value = '';
+      document.getElementById('charCount').textContent = '0';
+      document.getElementById('formTitle').textContent = 'Write a New Poem';
+      document.getElementById('formSub').textContent = 'let the ink find its way';
+      document.getElementById('submitLabel').textContent = 'Publish Poem';
+      document.getElementById('cancelEditBtn').style.display = 'none';
     }
 
     async function savePoem(e) {
       e.preventDefault();
-      const idField = document.getElementById('poemId');
       const title = document.getElementById('poemTitle').value.trim();
       const body = document.getElementById('poemBody').value.trim();
       if (!title || !body) return;
 
+      const id = document.getElementById('poemId').value;
       try {
-        if (idField.value !== '') {
-          const res = await fetch(`${API_BASE}/poems/${idField.value}`, {
+        if (id) {
+          await apiFetch(`/poems/${id}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, body })
           });
-          if (!res.ok) {
-            const detail = await res.text();
-            throw new Error(`update failed: ${res.status} — ${detail}`);
-          }
           showToast('Poem revised &mdash; the words breathe anew.');
         } else {
-          const res = await fetch(`${API_BASE}/poems`, {
+          await apiFetch('/poems', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, body })
           });
-          if (!res.ok) {
-            const detail = await res.text();
-            throw new Error(`create failed: ${res.status} — ${detail}`);
-          }
           showToast('Poem published &mdash; ink meets eternity.');
         }
+        cancelEdit();
         await fetchPoems();
-        closeModal('poemModal');
       } catch (err) {
-        showToast('Failed to save poem. Check console for details.');
+        showToast('Failed to save poem.');
         console.error('savePoem error:', err);
       }
     }
@@ -641,11 +880,8 @@
     async function deletePoem(id) {
       if (!confirm('Remove this poem from the world?')) return;
       try {
-        const res = await fetch(`${API_BASE}/poems/${id}`, { method: 'DELETE' });
-        if (!res.ok) {
-          const detail = await res.text();
-          throw new Error(`delete failed: ${res.status} — ${detail}`);
-        }
+        await apiFetch(`/poems/${id}`, { method: 'DELETE' });
+        if (currentEditId === id) cancelEdit();
         await fetchPoems();
         showToast('Poem dissolved back into silence.');
       } catch (err) {
@@ -676,18 +912,13 @@
 
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
       overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
-        }
+        if (e.target === overlay) { closeModal(overlay.id); }
       });
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        document.querySelectorAll('.modal-overlay.active').forEach(m => {
-          m.classList.remove('active');
-        });
+        document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
         document.body.style.overflow = '';
       }
     });
@@ -706,23 +937,24 @@
       t._timeout = setTimeout(() => t.classList.remove('show'), 3000);
     }
 
-    // ─── Smooth scroll ───
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
     // ─── Init ───
     fetchPoems();
 
-    // ─── Canvas Background Animation ───
+    // ─── Enhanced Canvas Animation ───
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
+    let mouse = { x: -1000, y: -1000 };
     let animId;
+
+    canvas.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    canvas.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -730,37 +962,51 @@
     }
 
     class Particle {
-      constructor() { this.reset(); }
-      reset() {
+      constructor() { this.reset(true); }
+      reset(init = false) {
         this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedY = -(Math.random() * 0.3 + 0.1);
-        this.speedX = (Math.random() - 0.5) * 0.2;
-        this.opacity = Math.random() * 0.6 + 0.2;
+        this.y = init ? Math.random() * canvas.height : canvas.height + 10;
+        this.size = Math.random() * 3 + 0.5;
+        this.speedY = -(Math.random() * 0.35 + 0.08);
+        this.speedX = (Math.random() - 0.5) * 0.15;
+        this.opacity = Math.random() * 0.5 + 0.15;
         this.pulse = Math.random() * Math.PI * 2;
-        this.pulseSpeed = Math.random() * 0.02 + 0.005;
+        this.pulseSpeed = Math.random() * 0.015 + 0.005;
+        this.hue = Math.random() < 0.3 ? 45 : 40;
       }
       update() {
         this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.pulse) * 0.1;
+        this.x += this.speedX + Math.sin(this.pulse) * 0.08;
         this.pulse += this.pulseSpeed;
-        if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150 && dist > 0) {
+          this.x -= dx / dist * 0.3;
+          this.y -= dy / dist * 0.3;
+        }
+        if (this.y < -15 || this.x < -15 || this.x > canvas.width + 15) {
           this.y = canvas.height + 10;
           this.x = Math.random() * canvas.width;
         }
       }
       draw() {
-        const a = this.opacity * (0.7 + 0.3 * Math.sin(this.pulse));
+        const a = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 167, 66, ${a})`;
+        ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${a})`;
         ctx.fill();
+        if (this.size > 1.5) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${a * 0.08})`;
+          ctx.fill();
+        }
       }
     }
 
     function initParticles() {
-      const count = Math.min(Math.floor(canvas.width * canvas.height / 8000), 120);
+      const count = Math.min(Math.floor(canvas.width * canvas.height / 6000), 180);
       particles = Array.from({ length: count }, () => new Particle());
     }
 
@@ -770,11 +1016,11 @@
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          if (dist < 130) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(212, 167, 66, ${0.06 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `rgba(212, 167, 66, ${0.05 * (1 - dist / 130)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
