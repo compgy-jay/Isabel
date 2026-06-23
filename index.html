@@ -20,6 +20,11 @@
       --text-dim: #8a7e6e;
       --text-muted: #5a5042;
       --danger: #b34a4a;
+      --ink-rose: #D45B5B;
+      --ink-teal: #5BB8B8;
+      --ink-violet: #A78BFA;
+      --ink-amber: #D4A042;
+      --ink-coral: #E8847A;
       --radius: 12px;
       --shadow: 0 4px 24px rgba(0,0,0,0.4);
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -549,6 +554,42 @@
     }
     .forgot-section .back-link a:hover { color: var(--gold); }
 
+    /* ─── Ink Colors ─── */
+    .ink-rose { color: var(--ink-rose); }
+    .ink-teal { color: var(--ink-teal); }
+    .ink-violet { color: var(--ink-violet); }
+    .ink-amber { color: var(--ink-amber); }
+    .ink-coral { color: var(--ink-coral); }
+
+    /* ─── Write Toolbar ─── */
+    .write-toolbar {
+      display: flex; gap: 0.5rem; align-items: center;
+      margin-bottom: 0.5rem; flex-wrap: wrap;
+    }
+    .write-toolbar .toolbar-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-right: 0.25rem;
+    }
+    .write-toolbar .size-btn {
+      font-family: 'Inter', sans-serif;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--gold-dim);
+      color: var(--text-dim); border-radius: 4px;
+      padding: 0.3rem 0.6rem; cursor: pointer;
+      font-size: 0.65rem; transition: var(--transition);
+      line-height: 1.2;
+    }
+    .write-toolbar .size-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .write-toolbar .size-btn.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .write-toolbar .color-swatch {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid transparent; cursor: pointer;
+      transition: var(--transition); display: inline-block;
+    }
+    .write-toolbar .color-swatch:hover { transform: scale(1.15); }
+    .write-toolbar .color-swatch.active { border-color: var(--gold); }
+
     /* ─── Animations ─── */
     .fade-in {
       opacity: 0; transform: translateY(20px);
@@ -733,6 +774,19 @@
               </div>
               <div class="form-group">
                 <label for="poemBody">Poem</label>
+                <div class="write-toolbar">
+                  <span class="toolbar-label">Size</span>
+                  <button type="button" class="size-btn" data-size="0.9rem" onclick="setWriteSize('0.9rem')">S</button>
+                  <button type="button" class="size-btn active" data-size="1.05rem" onclick="setWriteSize('1.05rem')">M</button>
+                  <button type="button" class="size-btn" data-size="1.35rem" onclick="setWriteSize('1.35rem')">L</button>
+                  <span class="toolbar-label" style="margin-left:0.5rem;">Colour</span>
+                  <span class="color-swatch active" style="background:var(--text)" data-color="var(--text)" onclick="setWriteColor('var(--text)',this)"></span>
+                  <span class="color-swatch" style="background:var(--ink-rose)" data-color="var(--ink-rose)" onclick="setWriteColor('var(--ink-rose)',this)"></span>
+                  <span class="color-swatch" style="background:var(--ink-teal)" data-color="var(--ink-teal)" onclick="setWriteColor('var(--ink-teal)',this)"></span>
+                  <span class="color-swatch" style="background:var(--ink-violet)" data-color="var(--ink-violet)" onclick="setWriteColor('var(--ink-violet)',this)"></span>
+                  <span class="color-swatch" style="background:var(--ink-amber)" data-color="var(--ink-amber)" onclick="setWriteColor('var(--ink-amber)',this)"></span>
+                  <span class="color-swatch" style="background:var(--ink-coral)" data-color="var(--ink-coral)" onclick="setWriteColor('var(--ink-coral)',this)"></span>
+                </div>
                 <textarea id="poemBody" placeholder="Write your poem here..." required></textarea>
                 <div class="char-count"><span id="charCount">0</span> characters</div>
               </div>
@@ -820,6 +874,7 @@
     const DEFAULT_PASSWORD = 'newday';
     const PHONE = '+254710652805';
     const AUTH_KEY = 'isabella_authenticated';
+    const INK_COLORS = ['ink-rose', 'ink-teal', 'ink-violet', 'ink-amber', 'ink-coral'];
 
     let poems = [];
     let currentEditId = null;
@@ -975,9 +1030,10 @@
       }
       grid.innerHTML = poems.map((p, i) => {
         const excerpt = p.body.length > 140 ? p.body.slice(0, 140) + '...' : p.body;
+        const ink = INK_COLORS[i % INK_COLORS.length];
         return `
           <div class="poem-card visible" style="animation-delay:${i * 0.05}s">
-            <div class="poem-title">${escapeHtml(p.title)}</div>
+            <div class="poem-title ${ink}">${escapeHtml(p.title)}</div>
             <div class="poem-date">${formatDate(p.created_at || p.createdAt)}</div>
             <div class="poem-excerpt">${escapeHtml(excerpt)}</div>
             <div class="poem-actions">
@@ -1102,9 +1158,17 @@
     function openReadModal(id) {
       const p = getPoemById(id);
       if (!p) return;
-      document.getElementById('readPoemTitle').textContent = p.title;
+      const titleEl = document.getElementById('readPoemTitle');
+      const bodyEl = document.getElementById('readPoemBody');
+      INK_COLORS.forEach(c => titleEl.classList.remove(c));
+      INK_COLORS.forEach(c => bodyEl.classList.remove(c));
+      const titleInk = INK_COLORS[Math.floor(Math.random() * INK_COLORS.length)];
+      const bodyInk = INK_COLORS[Math.floor(Math.random() * INK_COLORS.length)];
+      titleEl.classList.add(titleInk);
+      bodyEl.classList.add(bodyInk);
+      titleEl.textContent = p.title;
       document.getElementById('readPoemDate').textContent = formatDate(p.created_at || p.createdAt);
-      document.getElementById('readPoemBody').textContent = p.body;
+      bodyEl.textContent = p.body;
       openModal('readModal');
     }
 
@@ -1136,6 +1200,21 @@
     document.getElementById('poemBody').addEventListener('input', function() {
       document.getElementById('charCount').textContent = this.value.length;
     });
+
+    // ─── Write Toolbar ───
+    function setWriteSize(size) {
+      const ta = document.getElementById('poemBody');
+      ta.style.fontSize = size;
+      document.querySelectorAll('.size-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.size === size);
+      });
+    }
+    function setWriteColor(color, el) {
+      const ta = document.getElementById('poemBody');
+      ta.style.color = color;
+      document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+    }
 
     // ─── Toast ───
     function showToast(msg) {
