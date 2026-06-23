@@ -112,50 +112,83 @@
     /* ─── Hero ─── */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      padding: 7rem 2rem 4rem;
       position: relative; overflow: hidden;
+      display: flex; align-items: center;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background:
-        radial-gradient(ellipse at 50% 25%, rgba(212, 167, 66, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(212, 167, 66, 0.04) 0%, transparent 50%);
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: var(--bg) url('hero-bg.jpg') center / cover no-repeat;
       z-index: 0;
     }
-    .hero > * { position: relative; z-index: 1; }
-    .hero-ornament {
-      color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem;
-      opacity: 0.5; letter-spacing: 10px;
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(5,5,8,0.7) 0%, rgba(5,5,8,0.3) 50%, rgba(5,5,8,0.6) 100%);
+      z-index: 1;
     }
-    .hero h1 {
+    .hero-content {
+      position: relative; z-index: 2;
+      margin-left: auto;
+      padding: 4rem 5rem 4rem 3rem;
+      max-width: 640px;
+      text-align: right;
+    }
+    .hero-content h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 5.5rem; font-weight: 600; letter-spacing: 1px;
-      color: #f0e6d4;
-      margin-bottom: 0.3rem;
-      text-shadow: 0 2px 40px rgba(212, 167, 66, 0.1);
+      font-size: 5rem; font-weight: 700; line-height: 1.05;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f0e6d4 0%, var(--gold) 40%, #d4af37 60%, #f0e6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.6rem;
+      text-shadow: none;
+      filter: drop-shadow(0 2px 12px rgba(212, 167, 66, 0.25));
     }
-    .hero .tagline {
+    .hero-content .by-line {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem; font-weight: 300; font-style: italic;
-      color: var(--text-dim); margin-bottom: 0.5rem;
+      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      color: #b8ad9c;
+      margin-bottom: 2.5rem;
+      letter-spacing: 2px;
     }
-    .hero .divider {
-      width: 60px; height: 1.5px;
-      background: var(--gold); margin: 1.8rem auto;
-      opacity: 0.5;
-      border-radius: 2px;
+    .hero-content .by-line::before { content: '\2014\00a0'; }
+    .hero-content .by-line::after { content: '\00a0\2014'; }
+    .hero-nav {
+      display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;
     }
-    .hero .description {
-      font-family: 'Lora', serif;
-      font-size: 1.1rem; color: #6d6355;
-      max-width: 500px; font-style: italic;
+    .hero-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.7rem 1.8rem;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid rgba(212, 167, 66, 0.35);
+      color: var(--gold);
+      cursor: pointer; transition: var(--transition);
+      text-decoration: none;
     }
-    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .hero-nav a:hover {
+      background: rgba(212, 167, 66, 0.1);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(212, 167, 66, 0.12), inset 0 0 20px rgba(212, 167, 66, 0.04);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .hero-content {
+        margin: 0 auto;
+        padding: 6rem 2rem 3rem;
+        text-align: center;
+      }
+      .hero-content h1 { font-size: 3.2rem; letter-spacing: 2px; }
+      .hero-nav { justify-content: center; }
+      .hero-nav a { padding: 0.6rem 1.4rem; font-size: 0.65rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2.4rem; }
+      .hero-content .by-line { font-size: 1.2rem; }
+    }
 
     /* ─── Buttons ─── */
     .btn {
@@ -642,8 +675,6 @@
       nav { padding: 0.6rem 1rem; height: 56px; }
       .nav-links { gap: 0; }
       .nav-links a { font-size: 0.6rem; padding: 0.4rem 0.8rem; letter-spacing: 1px; }
-      .hero h1 { font-size: 3rem; }
-      .hero .tagline { font-size: 1rem; }
       section { padding: 3rem 1.2rem; }
       .section-title { font-size: 2rem; }
       .poem-grid { grid-template-columns: 1fr; }
@@ -653,8 +684,6 @@
       .contact-details { flex-direction: column; align-items: center; }
     }
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2.2rem; }
-      .hero-cta { flex-direction: column; align-items: center; }
       .section-title { font-size: 1.7rem; }
     }
   </style>
@@ -724,15 +753,17 @@
 
   <!-- ─── Tab: Home ─── -->
   <div class="tab-content active" id="tab-home">
-    <section class="hero">
-      <div class="hero-ornament">&loz; &loz; &loz;</div>
-      <h1 class="ink-violet">Isabella</h1>
-      <p class="tagline">&mdash; weaving silence into verse &mdash;</p>
-      <div class="divider"></div>
-      <p class="description">For words are the only truce we keep with the unfathomable.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" onclick="switchTab('poems')"><i class="fas fa-feather-alt"></i> Read Poems</a>
-        <a class="btn btn-outline" onclick="switchTab('write')"><i class="fas fa-pen-fancy"></i> Write</a>
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>POET<br>PORTFOLIO</h1>
+        <p class="by-line">Isabella</p>
+        <nav class="hero-nav">
+          <a onclick="switchTab('poems')">Poems</a>
+          <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
+          <a onclick="switchTab('contact')">Contact</a>
+        </nav>
       </div>
     </section>
 
