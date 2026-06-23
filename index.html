@@ -113,24 +113,23 @@
     .hero {
       min-height: 100vh;
       position: relative; z-index: 1;
+      display: flex; align-items: center;
+      padding: 2rem 4rem;
+      gap: 3rem;
+    }
+    .hero-image {
+      flex: 0 0 auto;
+      max-width: 45%;
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      z-index: 1;
-      background: rgba(0,0,0,0.55);
+    .hero-image img {
+      max-width: 100%; max-height: 80vh;
+      object-fit: contain;
+      border-radius: var(--radius);
     }
     .hero-content {
-      position: relative; z-index: 2;
-      text-align: center;
-      padding: 2rem;
+      flex: 1;
+      text-align: left;
     }
     .hero-content h1 {
       font-family: 'Playfair Display', serif;
@@ -147,15 +146,14 @@
     .hero-content .by-line {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem; font-weight: 300; font-style: italic;
-      color: #e0d5c0;
+      color: #b8ad9c;
       margin-bottom: 2.5rem;
       letter-spacing: 2px;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
     }
     .hero-content .by-line::before { content: '\2014\00a0'; }
     .hero-content .by-line::after { content: '\00a0\2014'; }
     .hero-nav {
-      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
     }
     .hero-nav a {
       font-family: 'Inter', sans-serif;
@@ -163,20 +161,23 @@
       text-transform: uppercase;
       padding: 0.7rem 1.8rem;
       border-radius: 6px;
-      background: rgba(5,5,8,0.3);
-      backdrop-filter: blur(4px);
+      background: transparent;
       border: 1px solid rgba(212, 167, 66, 0.35);
       color: var(--gold);
       cursor: pointer; transition: var(--transition);
       text-decoration: none;
     }
     .hero-nav a:hover {
-      background: rgba(212, 167, 66, 0.15);
+      background: rgba(212, 167, 66, 0.1);
       border-color: var(--gold);
       box-shadow: 0 0 20px rgba(212, 167, 66, 0.12), inset 0 0 20px rgba(212, 167, 66, 0.04);
       transform: translateY(-2px);
     }
     @media (max-width: 768px) {
+      .hero { flex-direction: column; padding: 6rem 1.5rem 3rem; gap: 1.5rem; }
+      .hero-image { max-width: 80%; }
+      .hero-content { text-align: center; }
+      .hero-nav { justify-content: center; }
       .hero-content h1 { font-size: 3.2rem; letter-spacing: 2px; }
       .hero-nav a { padding: 0.6rem 1.4rem; font-size: 0.65rem; }
     }
@@ -749,8 +750,9 @@
   <!-- ─── Tab: Home ─── -->
   <div class="tab-content active" id="tab-home">
     <section class="hero">
-      <img class="hero-bg" src="portfolio-bg.png" alt="...">
-      <div class="hero-overlay"></div>
+      <div class="hero-image">
+        <img src="portfolio-bg.png" alt="...">
+      </div>
       <div class="hero-content">
         <h1>POET<br>PORTFOLIO</h1>
         <p class="by-line">Isabella</p>
