@@ -112,29 +112,30 @@
     /* ─── Hero ─── */
     .hero {
       min-height: 100vh;
-      position: relative; overflow: hidden;
+      position: relative; z-index: 1;
       display: flex; align-items: center;
+      padding: 0;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: var(--bg) url('hero-bg.jpg') center / cover no-repeat;
-      z-index: 0;
+    .hero-image {
+      flex: 0 0 50%;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
     }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(5,5,8,0.7) 0%, rgba(5,5,8,0.3) 50%, rgba(5,5,8,0.6) 100%);
-      z-index: 1;
+    .hero-image img {
+      max-width: 100%; max-height: 85vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
     .hero-content {
-      position: relative; z-index: 2;
-      margin-left: auto;
-      padding: 4rem 5rem 4rem 3rem;
-      max-width: 640px;
-      text-align: right;
+      flex: 0 0 50%;
+      padding: 4rem 5rem 4rem 2rem;
+      text-align: left;
     }
     .hero-content h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 5rem; font-weight: 700; line-height: 1.05;
+      font-size: 4.5rem; font-weight: 700; line-height: 1.05;
       letter-spacing: 4px;
       text-transform: uppercase;
       background: linear-gradient(135deg, #f0e6d4 0%, var(--gold) 40%, #d4af37 60%, #f0e6d4 100%);
@@ -142,12 +143,11 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 0.6rem;
-      text-shadow: none;
       filter: drop-shadow(0 2px 12px rgba(212, 167, 66, 0.25));
     }
     .hero-content .by-line {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      font-size: 1.4rem; font-weight: 300; font-style: italic;
       color: #b8ad9c;
       margin-bottom: 2.5rem;
       letter-spacing: 2px;
@@ -155,7 +155,7 @@
     .hero-content .by-line::before { content: '\2014\00a0'; }
     .hero-content .by-line::after { content: '\00a0\2014'; }
     .hero-nav {
-      display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
     }
     .hero-nav a {
       font-family: 'Inter', sans-serif;
@@ -175,19 +175,17 @@
       box-shadow: 0 0 20px rgba(212, 167, 66, 0.12), inset 0 0 20px rgba(212, 167, 66, 0.04);
       transform: translateY(-2px);
     }
-    @media (max-width: 768px) {
-      .hero-content {
-        margin: 0 auto;
-        padding: 6rem 2rem 3rem;
-        text-align: center;
-      }
-      .hero-content h1 { font-size: 3.2rem; letter-spacing: 2px; }
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; min-height: auto; }
+      .hero-image { flex: none; width: 100%; min-height: auto; padding: 6rem 1.5rem 1rem; }
+      .hero-image img { max-height: 50vh; }
+      .hero-content { flex: none; width: 100%; padding: 1rem 2rem 4rem; text-align: center; }
       .hero-nav { justify-content: center; }
-      .hero-nav a { padding: 0.6rem 1.4rem; font-size: 0.65rem; }
+      .hero-content h1 { font-size: 3rem; }
     }
     @media (max-width: 480px) {
-      .hero-content h1 { font-size: 2.4rem; }
-      .hero-content .by-line { font-size: 1.2rem; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-content .by-line { font-size: 1.1rem; }
     }
 
     /* ─── Buttons ─── */
@@ -754,8 +752,9 @@
   <!-- ─── Tab: Home ─── -->
   <div class="tab-content active" id="tab-home">
     <section class="hero" id="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
+      <div class="hero-image">
+        <img src="hero-portrait.png" alt="Isabella portrait">
+      </div>
       <div class="hero-content">
         <h1>POET<br>PORTFOLIO</h1>
         <p class="by-line">Isabella</p>
