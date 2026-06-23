@@ -4,30 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Isabella &mdash; Poet. Dreamer. Storyteller.</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='4' fill='%23EFF5F9'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='20' font-weight='600' fill='%234338CA'%3EI%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='4' fill='%23050508'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='20' font-weight='600' fill='%23d4a742'%3EI%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg: #EFF5F9;
-      --bg-warm: #F3F8FC;
-      --surface: #FFFFFF;
-      --surface-hover: #F0F5FA;
-      --ink-rose: #D45B5B;
-      --ink-indigo: #4338CA;
-      --ink-amber: #C49A3C;
-      --ink-violet: #7C5E8E;
-      --ink-teal: #0D9488;
-      --ink-rust: #B45309;
-      --text: #1E293B;
-      --text-dim: #64748B;
-      --text-muted: #94A3B8;
-      --danger: #D45B5B;
+      --bg: #050508;
+      --surface: #0c0b0f;
+      --surface-hover: #141218;
+      --gold: #d4a742;
+      --gold-dim: rgba(212, 167, 66, 0.15);
+      --text: #d4c9b8;
+      --text-dim: #8a7e6e;
+      --text-muted: #5a5042;
+      --danger: #b34a4a;
       --radius: 12px;
-      --shadow: 0 4px 24px rgba(30, 41, 59, 0.06);
-      --shadow-hover: 0 12px 40px rgba(30, 41, 59, 0.1);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -49,39 +43,31 @@
     }
 
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--ink-indigo); }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #2a2018; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
     a { text-decoration: none; color: inherit; }
-
-    /* ─── Ink Colors ─── */
-    .ink-rose { color: var(--ink-rose); }
-    .ink-indigo { color: var(--ink-indigo); }
-    .ink-amber { color: var(--ink-amber); }
-    .ink-violet { color: var(--ink-violet); }
-    .ink-teal { color: var(--ink-teal); }
-    .ink-rust { color: var(--ink-rust); }
 
     /* ─── Navigation ─── */
     nav {
       position: fixed; top: 0; width: 100%;
       padding: 0.8rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(239, 245, 249, 0.88);
+      background: rgba(5, 5, 8, 0.85);
       backdrop-filter: blur(20px) saturate(1.2);
-      border-bottom: 1px solid rgba(67, 56, 202, 0.08);
+      border-bottom: 1px solid var(--gold-dim);
       z-index: 100;
       height: 64px;
     }
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem; font-weight: 600;
-      color: var(--ink-indigo);
-      letter-spacing: 1px;
+      color: var(--gold);
+      letter-spacing: 2px;
     }
     .logo span { font-family: 'Cormorant Garamond', serif; font-weight: 300; color: var(--text-dim); }
-    .nav-links { display: flex; gap: 0.25rem; list-style: none; background: rgba(0,0,0,0.02); border-radius: 8px; padding: 0.25rem; }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.25rem; }
     .nav-links a {
       font-family: 'Inter', sans-serif;
       font-size: 0.75rem; font-weight: 500; letter-spacing: 1.5px;
@@ -92,8 +78,8 @@
       transition: var(--transition);
       cursor: pointer;
     }
-    .nav-links a:hover { color: var(--text-dim); background: rgba(0,0,0,0.03); }
-    .nav-links a.active { color: var(--ink-indigo); background: rgba(67, 56, 202, 0.08); }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-links a.active { color: var(--gold); background: var(--gold-dim); }
 
     /* ─── Tab Content ─── */
     .tab-content { display: none; }
@@ -106,7 +92,7 @@
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: 2.8rem; font-weight: 500; text-align: center;
-      color: var(--text); margin-bottom: 0.3rem;
+      color: #f0e6d4; margin-bottom: 0.3rem;
     }
     .section-subtitle {
       text-align: center; font-style: italic; color: var(--text-dim);
@@ -114,7 +100,7 @@
       font-size: 1.2rem; margin-bottom: 3rem;
     }
     .section-ornament {
-      text-align: center; font-size: 1.2rem;
+      text-align: center; color: var(--gold); font-size: 1.2rem;
       margin-bottom: 1rem; opacity: 0.4; letter-spacing: 8px;
     }
 
@@ -132,35 +118,36 @@
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       background:
-        radial-gradient(ellipse at 50% 25%, rgba(67, 56, 202, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(13, 148, 136, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse at 50% 25%, rgba(212, 167, 66, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(212, 167, 66, 0.04) 0%, transparent 50%);
       z-index: 0;
     }
     .hero > * { position: relative; z-index: 1; }
     .hero-ornament {
-      font-size: 2rem; margin-bottom: 0.5rem;
-      opacity: 0.4; letter-spacing: 10px;
+      color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem;
+      opacity: 0.5; letter-spacing: 10px;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 5.5rem; font-weight: 600; letter-spacing: 1px;
+      color: #f0e6d4;
       margin-bottom: 0.3rem;
-      text-shadow: 0 2px 40px rgba(67, 56, 202, 0.08);
+      text-shadow: 0 2px 40px rgba(212, 167, 66, 0.1);
     }
     .hero .tagline {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem; font-weight: 300; font-style: italic;
-      margin-bottom: 0.5rem;
+      color: var(--text-dim); margin-bottom: 0.5rem;
     }
     .hero .divider {
-      width: 60px; height: 2px;
-      margin: 1.8rem auto;
-      opacity: 0.3;
+      width: 60px; height: 1.5px;
+      background: var(--gold); margin: 1.8rem auto;
+      opacity: 0.5;
       border-radius: 2px;
     }
     .hero .description {
       font-family: 'Lora', serif;
-      font-size: 1.1rem;
+      font-size: 1.1rem; color: #6d6355;
       max-width: 500px; font-style: italic;
     }
     .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
@@ -176,22 +163,22 @@
       cursor: pointer; border: none;
     }
     .btn-primary {
-      background: var(--ink-indigo); color: #fff;
+      background: var(--gold); color: var(--bg);
     }
     .btn-primary:hover {
-      background: #3730A3; transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(67, 56, 202, 0.2);
+      background: #e0b84c; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 167, 66, 0.25);
     }
     .btn-outline {
-      background: transparent; color: var(--text-dim);
-      border: 1px solid rgba(67, 56, 202, 0.2);
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(212, 167, 66, 0.3);
     }
     .btn-outline:hover {
-      border-color: var(--ink-indigo); color: var(--ink-indigo); transform: translateY(-2px);
+      border-color: var(--gold); color: var(--gold); transform: translateY(-2px);
     }
     .btn-danger {
       background: transparent; color: var(--danger);
-      border: 1px solid rgba(212, 91, 91, 0.3);
+      border: 1px solid rgba(179, 74, 74, 0.3);
     }
     .btn-danger:hover {
       background: var(--danger); color: #fff;
@@ -206,11 +193,13 @@
       max-width: 700px; margin: 0 auto;
       text-align: center; font-size: 1.15rem;
     }
-    .about-content p { margin-bottom: 1.2rem; color: var(--text-dim); }
+    .about-content p { margin-bottom: 1.2rem; color: #b8ad9c; }
+    .about-content .gold { color: var(--gold); }
     .about-signature {
       font-family: 'Playfair Display', serif;
       font-style: italic; font-size: 1.4rem;
-      margin-top: 2rem;
+      color: var(--gold); margin-top: 2rem;
+      opacity: 0.7;
     }
 
     /* ─── Poems Grid (Public) ─── */
@@ -221,30 +210,30 @@
     }
     .poem-card {
       background: var(--surface);
-      border: 1px solid rgba(67, 56, 202, 0.06);
+      border: 1px solid rgba(212, 167, 66, 0.08);
       border-radius: var(--radius);
       padding: 1.8rem;
       transition: var(--transition);
       backdrop-filter: blur(12px);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow);
     }
     .poem-card::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
       opacity: 0;
       transition: var(--transition);
     }
     .poem-card:hover {
-      border-color: rgba(67, 56, 202, 0.15);
+      border-color: rgba(212, 167, 66, 0.25);
       transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
     }
     .poem-card:hover::before { opacity: 1; }
     .poem-card .poem-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 600;
+      font-size: 1.4rem; font-weight: 600; color: #f0e6d4;
       margin-bottom: 0.2rem;
     }
     .poem-card .poem-date {
@@ -261,7 +250,7 @@
     .poem-card .poem-actions {
       display: flex; gap: 0.8rem; margin-top: 1.2rem;
       padding-top: 1rem;
-      border-top: 1px solid rgba(67, 56, 202, 0.06);
+      border-top: 1px solid rgba(212, 167, 66, 0.06);
     }
     .poem-card .poem-actions button {
       background: none; border: none; color: var(--text-muted);
@@ -271,15 +260,15 @@
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
     }
-    .poem-card .poem-actions .read-btn:hover { color: var(--ink-indigo); background: rgba(67, 56, 202, 0.06); }
-    .poem-card .poem-actions .edit-btn:hover { color: var(--text); background: rgba(0,0,0,0.04); }
-    .poem-card .poem-actions .delete-btn:hover { color: var(--danger); background: rgba(212, 91, 91, 0.08); }
+    .poem-card .poem-actions .read-btn:hover { color: var(--gold); background: var(--gold-dim); }
+    .poem-card .poem-actions .edit-btn:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .poem-card .poem-actions .delete-btn:hover { color: var(--danger); background: rgba(179,74,74,0.1); }
 
     .empty-state {
       text-align: center; padding: 5rem 2rem;
       color: var(--text-muted); grid-column: 1 / -1;
     }
-    .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.25; color: var(--ink-indigo); }
+    .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--gold); }
     .empty-state h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-dim); margin-bottom: 0.5rem; }
     .empty-state p { font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
 
@@ -296,15 +285,14 @@
 
     .write-form-card {
       background: var(--surface);
-      border: 1px solid rgba(67, 56, 202, 0.08);
+      border: 1px solid var(--gold-dim);
       border-radius: var(--radius);
       padding: 2rem;
       backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
     }
     .write-form-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; color: var(--text); margin-bottom: 0.2rem;
+      font-size: 1.5rem; color: #f0e6d4; margin-bottom: 0.2rem;
     }
     .write-form-card .form-sub {
       font-family: 'Cormorant Garamond', serif;
@@ -317,22 +305,21 @@
       padding-right: 0.5rem;
     }
     .manage-list::-webkit-scrollbar { width: 4px; }
-    .manage-list::-webkit-scrollbar-thumb { background: rgba(67, 56, 202, 0.12); border-radius: 2px; }
+    .manage-list::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
 
     .manage-item {
       background: var(--surface);
-      border: 1px solid rgba(67, 56, 202, 0.05);
+      border: 1px solid rgba(212, 167, 66, 0.06);
       border-radius: 8px;
       padding: 1rem 1.2rem;
       display: flex; justify-content: space-between; align-items: center;
       transition: var(--transition);
-      box-shadow: 0 1px 4px rgba(30, 41, 59, 0.04);
     }
-    .manage-item:hover { border-color: rgba(67, 56, 202, 0.12); background: var(--surface-hover); }
+    .manage-item:hover { border-color: var(--gold-dim); background: var(--surface-hover); }
     .manage-item .mi-info { flex: 1; min-width: 0; }
     .manage-item .mi-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: var(--text);
+      font-size: 1rem; color: #f0e6d4;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .manage-item .mi-date {
@@ -351,8 +338,8 @@
     }
     .form-group input,
     .form-group textarea {
-      width: 100%; background: var(--bg-warm);
-      border: 1px solid rgba(67, 56, 202, 0.1);
+      width: 100%; background: var(--bg);
+      border: 1px solid rgba(212, 167, 66, 0.12);
       border-radius: 8px;
       padding: 0.9rem 1rem;
       color: var(--text); font-family: 'Lora', serif;
@@ -361,8 +348,8 @@
     }
     .form-group input:focus,
     .form-group textarea:focus {
-      border-color: rgba(67, 56, 202, 0.3);
-      box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.06);
+      border-color: rgba(212, 167, 66, 0.4);
+      box-shadow: 0 0 0 3px rgba(212, 167, 66, 0.06);
     }
     .form-group textarea { min-height: 200px; resize: vertical; }
     .form-group .char-count {
@@ -374,7 +361,7 @@
     /* ─── Modals ─── */
     .modal-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
       display: none; justify-content: center; align-items: center;
       z-index: 200; padding: 2rem;
       opacity: 0; transition: opacity 0.3s ease;
@@ -385,13 +372,12 @@
     }
     .modal {
       background: var(--surface);
-      border: 1px solid rgba(67, 56, 202, 0.08);
+      border: 1px solid rgba(212, 167, 66, 0.15);
       border-radius: var(--radius);
       width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto;
       padding: 2.5rem;
       transform: scale(0.95) translateY(10px);
       transition: transform 0.3s ease;
-      box-shadow: 0 20px 60px rgba(30, 41, 59, 0.1);
     }
     .modal-overlay.active .modal {
       transform: scale(1) translateY(0);
@@ -401,12 +387,12 @@
       color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
       transition: var(--transition); line-height: 1;
     }
-    .modal .close-modal:hover { color: var(--ink-indigo); }
+    .modal .close-modal:hover { color: var(--gold); }
 
     .read-modal .modal { max-width: 660px; }
     .read-poem-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem; font-weight: 600;
+      font-size: 2.2rem; font-weight: 600; color: #f0e6d4;
       margin-bottom: 0.2rem;
     }
     .read-poem-date {
@@ -416,14 +402,13 @@
     }
     .read-poem-body {
       font-family: 'Lora', serif;
-      font-size: 1.15rem; line-height: 2;
-      color: var(--text-dim);
+      font-size: 1.15rem; line-height: 2; color: #b8ad9c;
       white-space: pre-wrap;
     }
     .read-poem-body::first-letter {
       font-family: 'Playfair Display', serif;
       font-size: 4rem; float: left; line-height: 0.9;
-      margin-right: 0.5rem;
+      color: var(--gold); margin-right: 0.5rem;
       font-weight: 600;
     }
 
@@ -439,18 +424,18 @@
     }
     .contact-item {
       display: flex; align-items: center; gap: 1rem;
-      color: var(--text-dim); font-family: 'Lora', serif; font-size: 1.1rem;
+      color: #b8ad9c; font-family: 'Lora', serif; font-size: 1.1rem;
     }
     .contact-item i {
       width: 44px; height: 44px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(67, 56, 202, 0.12);
+      border: 1px solid var(--gold-dim);
       border-radius: 50%;
-      color: var(--ink-indigo); font-size: 1rem;
+      color: var(--gold); font-size: 1rem;
       transition: var(--transition);
     }
     .contact-item:hover i {
-      background: rgba(67, 56, 202, 0.06);
+      background: var(--gold-dim);
       transform: scale(1.05);
     }
     .contact-social {
@@ -459,31 +444,32 @@
     .contact-social a {
       width: 50px; height: 50px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(67, 56, 202, 0.12);
+      border: 1px solid var(--gold-dim);
       border-radius: 50%;
-      color: var(--text-muted); font-size: 1.2rem;
+      color: var(--text-dim); font-size: 1.2rem;
       transition: var(--transition);
     }
     .contact-social a:hover {
-      border-color: var(--ink-indigo); color: var(--ink-indigo);
+      border-color: var(--gold); color: var(--gold);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(67, 56, 202, 0.1);
+      box-shadow: 0 6px 20px rgba(212, 167, 66, 0.15);
     }
 
     /* ─── Footer ─── */
     footer {
       text-align: center; padding: 2.5rem;
-      border-top: 1px solid rgba(67, 56, 202, 0.06);
-      color: var(--text-muted);
+      border-top: 1px solid rgba(212, 167, 66, 0.06);
+      color: #3d362e;
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem; letter-spacing: 0.5px;
     }
+    footer .gold { color: var(--gold); }
 
     /* ─── Toast ─── */
     .toast {
       position: fixed; bottom: 2rem; right: 2rem;
       background: var(--surface);
-      border: 1px solid rgba(67, 56, 202, 0.1);
+      border: 1px solid var(--gold-dim);
       border-radius: 8px;
       padding: 1rem 1.5rem;
       color: var(--text);
@@ -492,7 +478,7 @@
       opacity: 0; transform: translateY(12px);
       transition: all 0.35s ease; z-index: 300; pointer-events: none;
       backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(30, 41, 59, 0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     .toast.show { opacity: 1; transform: translateY(0); }
 
@@ -507,21 +493,20 @@
     .login-overlay.hidden { opacity: 0; pointer-events: none; }
     .login-box {
       width: 100%; max-width: 400px;
-      border: 1px solid rgba(67, 56, 202, 0.08);
+      border: 1px solid var(--gold-dim);
       border-radius: var(--radius);
       padding: 3rem 2.5rem;
       background: var(--surface);
       backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-hover);
     }
     .login-box .login-ornament {
-      text-align: center; font-size: 1.5rem;
-      margin-bottom: 0.5rem; opacity: 0.4; letter-spacing: 6px;
+      text-align: center; color: var(--gold); font-size: 1.5rem;
+      margin-bottom: 0.5rem; opacity: 0.5; letter-spacing: 6px;
     }
     .login-box h1 {
       text-align: center; font-family: 'Playfair Display', serif;
       font-size: 2rem; font-weight: 500;
-      color: var(--text); margin-bottom: 0.2rem;
+      color: #f0e6d4; margin-bottom: 0.2rem;
     }
     .login-box .login-sub {
       text-align: center; font-style: italic; color: var(--text-dim);
@@ -542,7 +527,7 @@
       text-transform: uppercase; cursor: pointer;
       transition: var(--transition);
     }
-    .login-box .login-footer a:hover { color: var(--ink-indigo); }
+    .login-box .login-footer a:hover { color: var(--gold); }
     .forgot-section { display: none; }
     .forgot-section.active { display: block; }
     .login-form.hidden { display: none; }
@@ -552,7 +537,7 @@
       margin-bottom: 1.5rem; line-height: 1.6;
     }
     .forgot-section .sent-msg strong {
-      color: var(--ink-indigo); font-family: 'Playfair Display', serif;
+      color: var(--gold); font-family: 'Playfair Display', serif;
       letter-spacing: 4px;
     }
     .forgot-section .back-link { text-align: center; margin-top: 1.2rem; }
@@ -562,7 +547,7 @@
       text-transform: uppercase; cursor: pointer;
       transition: var(--transition);
     }
-    .forgot-section .back-link a:hover { color: var(--ink-indigo); }
+    .forgot-section .back-link a:hover { color: var(--gold); }
 
     /* ─── Animations ─── */
     .fade-in {
@@ -613,9 +598,9 @@
   <!-- ─── Login Screen ─── -->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
-      <div class="login-ornament ink-indigo">&loz; &loz; &loz;</div>
+      <div class="login-ornament">&loz; &loz; &loz;</div>
       <h1>Isabella</h1>
-      <p class="login-sub ink-teal">enter the garden of verses</p>
+      <p class="login-sub">enter the garden of verses</p>
 
       <div class="login-form" id="loginForm">
         <div class="login-error" id="loginError">Incorrect password. Try again.</div>
@@ -672,11 +657,11 @@
   <!-- ─── Tab: Home ─── -->
   <div class="tab-content active" id="tab-home">
     <section class="hero">
-      <div class="hero-ornament ink-violet">&loz; &loz; &loz;</div>
-      <h1 class="ink-indigo">Isabella</h1>
-      <p class="tagline ink-rose">&mdash; weaving silence into verse &mdash;</p>
-      <div class="divider" style="background:var(--ink-violet)"></div>
-      <p class="description ink-teal">For words are the only truce we keep with the unfathomable.</p>
+      <div class="hero-ornament">&loz; &loz; &loz;</div>
+      <h1>Isabella</h1>
+      <p class="tagline">&mdash; weaving silence into verse &mdash;</p>
+      <div class="divider"></div>
+      <p class="description">For words are the only truce we keep with the unfathomable.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" onclick="switchTab('poems')"><i class="fas fa-feather-alt"></i> Read Poems</a>
         <a class="btn btn-outline" onclick="switchTab('write')"><i class="fas fa-pen-fancy"></i> Write</a>
@@ -685,31 +670,31 @@
 
     <section id="about">
       <div class="section-container">
-        <div class="section-ornament ink-amber">&loz; &loz; &loz;</div>
+        <div class="section-ornament">&loz; &loz; &loz;</div>
         <h2 class="section-title">About Me</h2>
         <p class="section-subtitle">in which the poet introduces herself</p>
         <div class="about-content">
           <p>
-            I'm <strong class="ink-violet">Isabella</strong> &mdash; a keeper of quiet mornings, a collector of half-light,
+            I'm <span class="gold">Isabella</span> &mdash; a keeper of quiet mornings, a collector of half-light,
             and a poet who believes that every silence holds a syllable waiting to be born.
           </p>
           <p>
             I write because the world is too vast for prose. My verses wander through
-            <strong class="ink-rose">loss</strong>, <strong class="ink-indigo">longing</strong>,
-            <strong class="ink-amber">love</strong>, and the strange geography of the human heart.
+            <span class="gold">loss</span>, <span class="gold">longing</span>,
+            <span class="gold">love</span>, and the strange geography of the human heart.
             Each poem is a small room I build with words &mdash; and you are invited in.
           </p>
           <p>
             When I'm not stitching metaphors, you'll find me reading old letters,
             watching rain streak the window, or searching for the perfect last line.
           </p>
-          <div class="about-signature ink-teal">&mdash; Isabella</div>
+          <div class="about-signature">&mdash; Isabella</div>
         </div>
       </div>
     </section>
 
     <footer>
-      &copy; 2026 Isabella. Made with <span class="ink-rose">&loz;</span> and ink.
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
     </footer>
   </div>
 
@@ -717,14 +702,14 @@
   <div class="tab-content" id="tab-poems">
     <section>
       <div class="section-container">
-        <div class="section-ornament ink-teal">&loz; &loz; &loz;</div>
+        <div class="section-ornament">&loz; &loz; &loz;</div>
         <h2 class="section-title">Published Poems</h2>
         <p class="section-subtitle">fragments of a life transcribed</p>
         <div class="poem-grid" id="poemGrid"></div>
       </div>
     </section>
     <footer>
-      &copy; 2026 Isabella. Made with <span class="ink-rose">&loz;</span> and ink.
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
     </footer>
   </div>
 
@@ -732,7 +717,7 @@
   <div class="tab-content" id="tab-write">
     <section>
       <div class="section-container">
-        <div class="section-ornament ink-rose">&loz; &loz; &loz;</div>
+        <div class="section-ornament">&loz; &loz; &loz;</div>
         <h2 class="section-title">Manage Poems</h2>
         <p class="section-subtitle">write, revise, and curate your collection</p>
 
@@ -763,7 +748,7 @@
           </div>
 
           <div>
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:1rem;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#f0e6d4;margin-bottom:1rem;">
               Your Poems
             </h3>
             <div class="manage-list" id="manageList">
@@ -778,7 +763,7 @@
       </div>
     </section>
     <footer>
-      &copy; 2026 Isabella. Made with <span class="ink-rose">&loz;</span> and ink.
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
     </footer>
   </div>
 
@@ -786,7 +771,7 @@
   <div class="tab-content" id="tab-contact">
     <section>
       <div class="section-container">
-        <div class="section-ornament ink-rust">&loz; &loz; &loz;</div>
+        <div class="section-ornament">&loz; &loz; &loz;</div>
         <h2 class="section-title">Contact</h2>
         <p class="section-subtitle">let the words find their way back to me</p>
         <p class="contact-text">
@@ -811,7 +796,7 @@
       </div>
     </section>
     <footer>
-      &copy; 2026 Isabella. Made with <span class="ink-rose">&loz;</span> and ink.
+      &copy; 2026 Isabella. Made with <span class="gold">&loz;</span> and ink.
     </footer>
   </div>
 
@@ -819,7 +804,7 @@
   <div class="modal-overlay read-modal" id="readModal">
     <div class="modal">
       <button class="close-modal" onclick="closeModal('readModal')">&times;</button>
-      <div class="read-poem-title ink-indigo" id="readPoemTitle"></div>
+      <div class="read-poem-title" id="readPoemTitle"></div>
       <div class="read-poem-date" id="readPoemDate"></div>
       <div class="read-poem-body" id="readPoemBody"></div>
     </div>
@@ -835,16 +820,6 @@
     const DEFAULT_PASSWORD = 'newday';
     const PHONE = '+254710652805';
     const AUTH_KEY = 'isabella_authenticated';
-
-    const INK_COLORS = ['ink-rose', 'ink-indigo', 'ink-amber', 'ink-violet', 'ink-teal', 'ink-rust'];
-    const INK_BORDERS = [
-      'linear-gradient(90deg, transparent, var(--ink-rose), transparent)',
-      'linear-gradient(90deg, transparent, var(--ink-indigo), transparent)',
-      'linear-gradient(90deg, transparent, var(--ink-amber), transparent)',
-      'linear-gradient(90deg, transparent, var(--ink-violet), transparent)',
-      'linear-gradient(90deg, transparent, var(--ink-teal), transparent)',
-      'linear-gradient(90deg, transparent, var(--ink-rust), transparent)',
-    ];
 
     let poems = [];
     let currentEditId = null;
@@ -1000,10 +975,9 @@
       }
       grid.innerHTML = poems.map((p, i) => {
         const excerpt = p.body.length > 140 ? p.body.slice(0, 140) + '...' : p.body;
-        const inkIdx = i % INK_COLORS.length;
         return `
           <div class="poem-card visible" style="animation-delay:${i * 0.05}s">
-            <div class="poem-title ${INK_COLORS[inkIdx]}">${escapeHtml(p.title)}</div>
+            <div class="poem-title">${escapeHtml(p.title)}</div>
             <div class="poem-date">${formatDate(p.created_at || p.createdAt)}</div>
             <div class="poem-excerpt">${escapeHtml(excerpt)}</div>
             <div class="poem-actions">
@@ -1172,7 +1146,7 @@
       t._timeout = setTimeout(() => t.classList.remove('show'), 3000);
     }
 
-    // ─── Enhanced Canvas Animation (Light Theme) ───
+    // ─── Enhanced Canvas Animation ───
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -1198,18 +1172,17 @@
       reset(init = false) {
         this.x = Math.random() * canvas.width;
         this.y = init ? Math.random() * canvas.height : canvas.height + 10;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedY = -(Math.random() * 0.3 + 0.06);
-        this.speedX = (Math.random() - 0.5) * 0.12;
-        this.opacity = Math.random() * 0.3 + 0.08;
+        this.size = Math.random() * 3 + 0.5;
+        this.speedY = -(Math.random() * 0.35 + 0.08);
+        this.speedX = (Math.random() - 0.5) * 0.15;
+        this.opacity = Math.random() * 0.5 + 0.15;
         this.pulse = Math.random() * Math.PI * 2;
         this.pulseSpeed = Math.random() * 0.015 + 0.005;
-        const hues = [200, 210, 220, 190, 180, 230];
-        this.hue = hues[Math.floor(Math.random() * hues.length)];
+        this.hue = Math.random() < 0.3 ? 45 : 40;
       }
       update() {
         this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.pulse) * 0.06;
+        this.x += this.speedX + Math.sin(this.pulse) * 0.08;
         this.pulse += this.pulseSpeed;
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
@@ -1227,12 +1200,12 @@
         const a = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${this.hue}, 35%, 70%, ${a})`;
+        ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${a})`;
         ctx.fill();
-        if (this.size > 1.2) {
+        if (this.size > 1.5) {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${this.hue}, 35%, 70%, ${a * 0.08})`;
+          ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${a * 0.08})`;
           ctx.fill();
         }
       }
@@ -1253,7 +1226,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(148, 163, 184, ${0.04 * (1 - dist / 130)})`;
+            ctx.strokeStyle = `rgba(212, 167, 66, ${0.05 * (1 - dist / 130)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
