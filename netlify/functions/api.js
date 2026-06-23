@@ -43,7 +43,7 @@ export default async (req) => {
       const raw = await store.get('all', { type: 'json' });
       const poems = Array.isArray(raw) ? raw : [];
       const newId = poems.length ? Math.max(...poems.map(p => p.id)) + 1 : 1;
-      const poem = { id: newId, title: body.title, body: body.body, created_at: new Date().toISOString() };
+      const poem = { id: newId, title: body.title, body: body.body, title_font: body.title_font || 'font-playfair', title_color: body.title_color || 'gold', created_at: new Date().toISOString() };
       poems.unshift(poem);
       await store.setJSON('all', poems);
       return json(poem, 201);
@@ -58,7 +58,7 @@ export default async (req) => {
       const poems = Array.isArray(raw) ? raw : [];
       const idx = poems.findIndex(p => p.id === parseInt(putMatch[1]));
       if (idx === -1) return json({ error: 'Poem not found' }, 404);
-      poems[idx] = { ...poems[idx], title: body.title, body: body.body };
+      poems[idx] = { ...poems[idx], title: body.title, body: body.body, title_font: body.title_font || poems[idx].title_font || 'font-playfair', title_color: body.title_color || poems[idx].title_color || 'gold' };
       await store.setJSON('all', poems);
       return json(poems[idx]);
     }

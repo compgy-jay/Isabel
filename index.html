@@ -561,6 +561,12 @@
     .ink-amber { color: var(--ink-amber); }
     .ink-coral { color: var(--ink-coral); }
 
+    /* ─── Title Fonts ─── */
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+    .font-lora { font-family: 'Lora', serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+
     /* ─── Write Toolbar ─── */
     .write-toolbar {
       display: flex; gap: 0.5rem; align-items: center;
@@ -589,6 +595,27 @@
     }
     .write-toolbar .color-swatch:hover { transform: scale(1.15); }
     .write-toolbar .color-swatch.active { border-color: var(--gold); }
+
+    .title-style-bar {
+      display: flex; gap: 0.5rem; align-items: center;
+      margin-bottom: 0.5rem; flex-wrap: wrap;
+    }
+    .title-font-select {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg); border: 1px solid rgba(212, 167, 66, 0.12);
+      border-radius: 6px; padding: 0.4rem 0.6rem;
+      color: var(--text-dim); font-size: 0.7rem;
+      outline: none; cursor: pointer; transition: var(--transition);
+    }
+    .title-font-select:focus {
+      border-color: rgba(212, 167, 66, 0.4);
+    }
+    .title-color-group {
+      display: flex; gap: 0.35rem; align-items: center;
+    }
+    .title-color-group .color-swatch {
+      width: 20px; height: 20px;
+    }
 
     /* ─── Animations ─── */
     .fade-in {
@@ -770,6 +797,22 @@
               <input type="hidden" id="poemId" value="" />
               <div class="form-group">
                 <label for="poemTitle">Title</label>
+                <div class="title-style-bar">
+                  <select id="titleFont" class="title-font-select" onchange="previewTitleStyle()">
+                    <option value="font-playfair">Playfair Display</option>
+                    <option value="font-cormorant">Cormorant Garamond</option>
+                    <option value="font-lora">Lora</option>
+                    <option value="font-inter">Inter</option>
+                  </select>
+                  <div class="title-color-group">
+                    <span class="color-swatch active" style="background:var(--gold)" data-color="gold" onclick="setTitleColor('gold',this)"></span>
+                    <span class="color-swatch" style="background:var(--ink-rose)" data-color="ink-rose" onclick="setTitleColor('ink-rose',this)"></span>
+                    <span class="color-swatch" style="background:var(--ink-teal)" data-color="ink-teal" onclick="setTitleColor('ink-teal',this)"></span>
+                    <span class="color-swatch" style="background:var(--ink-violet)" data-color="ink-violet" onclick="setTitleColor('ink-violet',this)"></span>
+                    <span class="color-swatch" style="background:var(--ink-amber)" data-color="ink-amber" onclick="setTitleColor('ink-amber',this)"></span>
+                    <span class="color-swatch" style="background:var(--ink-coral)" data-color="ink-coral" onclick="setTitleColor('ink-coral',this)"></span>
+                  </div>
+                </div>
                 <input type="text" id="poemTitle" placeholder="e.g. The Shape of Silence" required />
               </div>
               <div class="form-group">
@@ -875,6 +918,9 @@
     const PHONE = '+254710652805';
     const AUTH_KEY = 'isabella_authenticated';
     const INK_COLORS = ['ink-rose', 'ink-teal', 'ink-violet', 'ink-amber', 'ink-coral'];
+    const FONT_CLASSES = ['font-playfair', 'font-cormorant', 'font-lora', 'font-inter'];
+    let currentTitleColor = 'gold';
+    let currentTitleFont = 'font-playfair';
 
     let poems = [];
     let currentEditId = null;
@@ -1030,10 +1076,11 @@
       }
       grid.innerHTML = poems.map((p, i) => {
         const excerpt = p.body.length > 140 ? p.body.slice(0, 140) + '...' : p.body;
-        const ink = INK_COLORS[i % INK_COLORS.length];
+        const ink = p.title_color || INK_COLORS[i % INK_COLORS.length];
+        const font = p.title_font || 'font-playfair';
         return `
           <div class="poem-card visible" style="animation-delay:${i * 0.05}s">
-            <div class="poem-title ${ink}">${escapeHtml(p.title)}</div>
+            <div class="poem-title ${ink} ${font}">${escapeHtml(p.title)}</div>
             <div class="poem-date">${formatDate(p.created_at || p.createdAt)}</div>
             <div class="poem-excerpt">${escapeHtml(excerpt)}</div>
             <div class="poem-actions">
@@ -1053,18 +1100,21 @@
         return;
       }
       empty.style.display = 'none';
-      list.innerHTML = poems.map(p => `
+      list.innerHTML = poems.map(p => {
+        const ink = p.title_color || '';
+        const font = p.title_font || '';
+        return `
         <div class="manage-item">
           <div class="mi-info">
-            <div class="mi-title">${escapeHtml(p.title)}</div>
+            <div class="mi-title ${ink} ${font}">${escapeHtml(p.title)}</div>
             <div class="mi-date">${formatDate(p.created_at || p.createdAt)}</div>
           </div>
           <div class="mi-actions">
             <button class="btn btn-outline btn-sm" onclick="openEditModal(${p.id})"><i class="fas fa-edit"></i></button>
             <button class="btn btn-danger btn-sm" onclick="deletePoem(${p.id})"><i class="fas fa-trash-alt"></i></button>
           </div>
-        </div>
-      `).join('');
+        </div>`;
+      }).join('');
     }
 
     function getPoemById(id) {
@@ -1082,6 +1132,13 @@
       document.getElementById('poemBody').value = '';
       document.getElementById('charCount').textContent = '0';
       document.getElementById('cancelEditBtn').style.display = 'none';
+      currentTitleFont = 'font-playfair';
+      currentTitleColor = 'gold';
+      document.getElementById('titleFont').value = 'font-playfair';
+      document.querySelectorAll('.title-color-group .color-swatch').forEach(s => s.classList.remove('active'));
+      document.querySelector('.title-color-group .color-swatch').classList.add('active');
+      const input = document.getElementById('poemTitle');
+      input.style.fontFamily = ''; input.style.color = '';
       document.getElementById('poemTitle').focus();
       switchTab('write');
     }
@@ -1098,6 +1155,12 @@
       document.getElementById('poemBody').value = p.body;
       document.getElementById('charCount').textContent = p.body.length;
       document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+      currentTitleFont = p.title_font || 'font-playfair';
+      currentTitleColor = p.title_color || 'gold';
+      document.getElementById('titleFont').value = currentTitleFont;
+      document.querySelectorAll('.title-color-group .color-swatch').forEach(s => s.classList.remove('active'));
+      document.querySelector(`.title-color-group .color-swatch[data-color="${currentTitleColor}"]`).classList.add('active');
+      previewTitleStyle();
       switchTab('write');
     }
 
@@ -1111,6 +1174,13 @@
       document.getElementById('formSub').textContent = 'let the ink find its way';
       document.getElementById('submitLabel').textContent = 'Publish Poem';
       document.getElementById('cancelEditBtn').style.display = 'none';
+      currentTitleFont = 'font-playfair';
+      currentTitleColor = 'gold';
+      document.getElementById('titleFont').value = 'font-playfair';
+      document.querySelectorAll('.title-color-group .color-swatch').forEach(s => s.classList.remove('active'));
+      document.querySelector('.title-color-group .color-swatch').classList.add('active');
+      const input = document.getElementById('poemTitle');
+      input.style.fontFamily = ''; input.style.color = '';
     }
 
     async function savePoem(e) {
@@ -1120,17 +1190,19 @@
       if (!title || !body) return;
 
       const id = document.getElementById('poemId').value;
+      const titleFont = currentTitleFont;
+      const titleColor = currentTitleColor;
       try {
         if (id) {
           await apiFetch(`/poems/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({ title, body })
+            body: JSON.stringify({ title, body, title_font: titleFont, title_color: titleColor })
           });
           showToast('Poem revised &mdash; the words breathe anew.');
         } else {
           await apiFetch('/poems', {
             method: 'POST',
-            body: JSON.stringify({ title, body })
+            body: JSON.stringify({ title, body, title_font: titleFont, title_color: titleColor })
           });
           showToast('Poem published &mdash; ink meets eternity.');
         }
@@ -1162,9 +1234,11 @@
       const bodyEl = document.getElementById('readPoemBody');
       INK_COLORS.forEach(c => titleEl.classList.remove(c));
       INK_COLORS.forEach(c => bodyEl.classList.remove(c));
-      const titleInk = INK_COLORS[Math.floor(Math.random() * INK_COLORS.length)];
+      FONT_CLASSES.forEach(c => titleEl.classList.remove(c));
+      const titleInk = p.title_color || INK_COLORS[Math.floor(Math.random() * INK_COLORS.length)];
+      const titleFont = p.title_font || 'font-playfair';
       const bodyInk = INK_COLORS[Math.floor(Math.random() * INK_COLORS.length)];
-      titleEl.classList.add(titleInk);
+      titleEl.classList.add(titleInk, titleFont);
       bodyEl.classList.add(bodyInk);
       titleEl.textContent = p.title;
       document.getElementById('readPoemDate').textContent = formatDate(p.created_at || p.createdAt);
@@ -1215,6 +1289,25 @@
       document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
       el.classList.add('active');
     }
+
+    // ─── Title Style ───
+    function setTitleColor(color, el) {
+      currentTitleColor = color;
+      el.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      previewTitleStyle();
+    }
+    function previewTitleStyle() {
+      const input = document.getElementById('poemTitle');
+      const font = document.getElementById('titleFont').value;
+      input.style.fontFamily = getComputedStyle(document.createElement('div')).fontFamily;
+      if (font === 'font-playfair') input.style.fontFamily = "'Playfair Display', serif";
+      else if (font === 'font-cormorant') input.style.fontFamily = "'Cormorant Garamond', serif";
+      else if (font === 'font-lora') input.style.fontFamily = "'Lora', serif";
+      else if (font === 'font-inter') input.style.fontFamily = "'Inter', sans-serif";
+      currentTitleFont = font;
+    }
+    document.getElementById('poemTitle').addEventListener('input', previewTitleStyle);
 
     // ─── Toast ───
     function showToast(msg) {
